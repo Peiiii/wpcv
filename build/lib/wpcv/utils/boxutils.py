@@ -153,7 +153,7 @@ def organize_quad_points(box):
     p12=[p1,p2]
     p0, p3 = sorted(p03, key=lambda p: p[1])
     p1, p2 = sorted(p12, key=lambda p: p[1])
-    return box.__class__([p0,p1,p2,p3])
+    return [p0,p1,p2,p3]
 def sort_boxes(boxes):
     from functools import cmp_to_key
     boxes=[ltrb_to_ccwh(box) for box in boxes]

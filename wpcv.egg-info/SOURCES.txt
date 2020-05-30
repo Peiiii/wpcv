@@ -2,6 +2,10 @@ README.md
 setup.py
 data/__init__.py
 scripts/__init__.py
+scripts/datasets/__init__.py
+scripts/datasets/aiwin.py
+scripts/datasets/tococo.py
+scripts/datasets/tofcltrb.py
 scripts/demos/1.py
 scripts/demos/__init__.py
 wpcv/__init__.py

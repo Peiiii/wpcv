@@ -1,14 +1,12 @@
 Metadata-Version: 2.1
 Name: wpcv
-Version: 0.0.0.6
-Summary: Computer Vision Toolkit by WangPei
+Version: 0.0.0.7
+Summary: CV Devkit of Wang Pei
 Home-page: https://github.com/Peiiii/wpcv
 Author: Wang Pei
 Author-email: 1535376447@qq.com
 License: UNKNOWN
-Description: wpkit2
-        ---
-        wpkit2 is a package , which contains many useful develop tools.
+Description: # wpcv
         
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
