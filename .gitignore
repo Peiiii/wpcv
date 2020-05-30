@@ -6,3 +6,5 @@
 .idea
 ./test.py
 ./tests
+.code
+.vscode
