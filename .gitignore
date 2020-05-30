@@ -3,3 +3,4 @@
 ./dist
 ./scripts
 ./wpcv.egg-info
+.idea
