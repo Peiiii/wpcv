@@ -1,0 +1,13 @@
+./build/*
+./build/**
+./data/*
+./data/**
+./dist/*
+./dist/**
+./scripts/*
+./wpcv.egg-info/*
+.idea/*
+./test.py
+./tests/*
+.code/*
+.vscode/*
