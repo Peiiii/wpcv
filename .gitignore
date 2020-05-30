@@ -4,3 +4,5 @@
 ./scripts
 ./wpcv.egg-info
 .idea
+./test.py
+./tests
