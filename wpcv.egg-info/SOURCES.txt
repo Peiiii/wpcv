@@ -15,6 +15,7 @@ wpcv/utils/__init__.py
 wpcv/utils/boxutils.py
 wpcv/utils/dataset.py
 wpcv/utils/imutils.py
+wpcv/utils/opencv.py
 wpcv/utils/augmentations/__init__.py
 wpcv/utils/augmentations/object_detection.py
 wpcv/utils/augmentations/trans.py

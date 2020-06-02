@@ -1,265 +1,322 @@
-import cv2
-from PIL import Image,ImageDraw,ImageFont
-import numpy as np
-from matplotlib import pyplot as plt
-import os,shutil,glob
-
-#########################Fonts###########################
-default_font=None
-default_font_path=None
-def get_default_font(font_size=None):
-    return ImageFont.truetype(default_font_path,font_size)
-def set_font_path(path):
-    global default_font_path
-    default_font_path=path
-def set_font(path,size=32):
-    global default_font
-    default_font=ImageFont.truetype(path,size=size)
-def test_font_dir(dir,dst=None,text=None):
-    fs=glob.glob(dir+'/*.ttf')+glob.glob(dir+'/*.ttc')+glob.glob(dir+'/*.otf')
-    dst=dst or dir+'/test_font'
-    for i,f in enumerate(fs):
-        test_font(f,dst,text=text)
-        print(i,f)
-    print('finished.')
-def test_font(path,dst='./test_font',text=None):
-    img_dir=dst+'/imgs'
-    log_file=dst+'/font_errors.txt'
-    bad_fonts=dst+'/bad_fonts.txt'
-    img=blank_rgb(size=(1024,32))
-    font=ImageFont.truetype(path,size=24)
-    text=text or 'Hello! 今天过得怎么样,~!#$%^&*()_+=-'
-    try:
-        img=draw_text(img,text=text,font=font)
-    except:
-        msg='Error occured when handle %s'%(path)
-        print(msg)
-        with open(log_file,'a',encoding='utf-8') as f:
-            f.write(msg+'\n')
-        with open(bad_fonts,'a',encoding='utf-8') as f:
-            f.write(path+'\n')
-        return
-    if not os.path.exists(img_dir):
-        os.makedirs(img_dir)
-    img.save(img_dir+'/'+os.path.basename(path)[:-3]+'.jpg')
-####################Generate#####################
-def blank_rgb(size=(512,48),color='white'):
-    img=Image.new('RGB',size,color)
-    return img
-def new_blank_img_as(img):
-    img=Image.new('RGB',size=img.size,color='white')
-    return img
-###################Size#######################
-def resize_to_fixed_height(img,height):
-    w,h=img.size
-    r=h/height
-    nw=int(w/r)
-    nh=int(h/r)
-    img=img.resize((nw,nh))
-    return img
-def resize_to_fixed_width(img,width):
-    w,h=img.size
-    r=w/width
-    nw=int(w/r)
-    nh=int(h/r)
-    img=img.resize((nw,nh))
-    return img
-def resize_by_scale(img,scale):
-    w, h = img.size
-    r = scale
-    nw = int(w * r)
-    nh = int(h * r)
-    img = img.resize((nw, nh))
-    return img
-def limit_size(img,limits):
-    w,h=img.size
-    mw,mh=limits
-    rw=w/mw
-    rh=h/mh
-    r=max(rw,rh)
-    if r<=1:
-        return img
-    nw=int(w/r)
-    nh=int(h/r)
-    img=img.resize((nw,nh))
-    return img
-#####################Draw#########################
-def concat_imgs_horizontal(imgs):
-    imgs=[cv2img(img) for img in imgs]
-    img=np.concatenate(imgs,axis=1)
-    return pilimg(img)
-def concat_imgs_vertical(imgs):
-    imgs=[cv2img(img) for img in imgs]
-    img=np.concatenate(imgs,axis=0)
-    return pilimg(img)
-def draw_boxes_with_label(img,boxes,offset=(0,-16),box_color='red',text_color='green',line_width=5):
-    ofx,ofy=offset
-    for box,label in boxes:
-        l,t,r,b=box
-        img=draw_box(img,box,outline=box_color,width=line_width)
-        img=draw_text(img,text=label,xy=(l+ofx,t+ofy),fill=text_color)
-    return img
-def mark_img(img,text,font_path=None,font_size=None):
-    imw,imh=img.size
-    font_path=font_path or default_font_path
-    if font_path:
-        font_size=font_size or min(32,imw//len(text))
-        font=ImageFont.truetype(font_path,size=font_size)
+import math
+##########################Box Operations#############################
+def resize_box(box,size):
+    cx,cy,w,h=ltrb_to_ccwh(box)
+    nw,nh=size
+    l=cx-nw//2
+    r=cx+nw//2
+    t=cy-nh//2
+    b=cy+nh//2
+    return [l,t,r,b]
+def rescale_box(box,scale):
+    '''rescale with  image'''
+    if isinstance(scale,(tuple,list)):
+        scaleX,scaleY=scale
     else:
-        font=None
-    def calc_pos(imsize,boxsize):
-        imw,imh=imsize
-        w,h=boxsize
-        x=imw//2-w//2
-        y=imh//2-h//2
-        return (x,y)
+        scaleX=scaleY=scale
+    l,t,r,b=box
+    l*=scaleX
+    r*=scaleX
+    t*=scaleY
+    b*=scaleY
+    return [l,t,r,b]
+def get_rotate_info(angle,cx,cy,h,w):
+    import math
+    import numpy as np
+    angle = math.radians(angle)
+    cos = math.cos(angle)
+    sin = math.sin(angle)
+    M = np.array([[cos, sin], [-sin, cos]])
+    cos = abs(cos)
+    sin = abs(sin)
+    nw = w * cos + h * sin
+    nh = w * sin + h * cos
+    return M,nw,nh
+def rotate_points(points,angle,cx,cy,h,w):
+    import numpy as np
+    M,nw,nh=get_rotate_info(angle,cx,cy,h,w)
+    points=np.array(points)
+    original_shape=points.shape
+    points=points.reshape((-1,2))
+    points=M.dot((points-np.array([cx,cy])).T).T+np.array([nw//2,nh//2])
+    points=points.reshape(original_shape)
+    return points
 
-    xy=calc_pos(img.size,(font.size*len(text),font.size))
-    img=draw_text(img,text,xy=xy,fill='red',font=font)
-    return img
-def draw_text(img,text,xy=(0,0),fill='black',font=None):
-    font=font or default_font
-    draw=ImageDraw.ImageDraw(img)
-    draw.text(xy,text=text,fill=fill,font=font)
-    return img
-def draw_boxes(img,boxes,copy=False,*args,**kwargs):
-    if copy:
-        img=img.copy()
-    for box in boxes:img=draw_box(img,box,copy=False,*args,**kwargs)
-    return img
-def draw_box(img,box,copy=True,width=5,outline='red',fill=None):
-    box=tuple(box)
-    if copy:
-        img=img.copy()
-    draw=ImageDraw.Draw(img)
-    draw.rectangle((box[:2],box[2:]),width=width,outline=outline,fill=fill)
-    return img
-def draw_polygon(img,points,color='blue',width=1):
-    points=[tuple(p) for p in points]
-    draw=ImageDraw.Draw(img)
-    points.append(points[0])
-    draw.line(points,fill=color,width=width)
-    return img
-def draw_textboxes(img,textboxes,copy=False,font_size=32):
-    if copy:
-        img=img.copy()
-    for textbox in textboxes:
-        img=draw_textbox(img,textbox,copy=False,font_size=font_size)
-    return img
-def draw_textbox(img,textbox,copy=True,font_size=None):
-    import os
-    font_size=font_size or 32
-    box,text=textbox
-    if copy:
-        img=img.copy()
-    draw = ImageDraw.Draw(img)
-    font=ImageFont.truetype(os.path.dirname(__file__)+'/msyh.ttf',size=font_size)
-    draw.text(box[:2],text=text,fill='black',font=font)
-    return img
-def pad_text_right(img,text,pad_width=400,pad_ratio=1,font=None,font_size=None,line_length=None):
-    # img=cv2img(img)
-    # h,w=img.shape[:2]
-    # blank=np.zeros_like(img)
-    def get_max_line_width(text):
-        lines=text.split('\n')
-        lens=[len(line) for line in lines]+[20]
-        return max(*lens)
-    line_length=line_length or max(get_max_line_width(text),20)
-    w,h=img.size
-    if pad_width:
-        pad_width=int(w*pad_ratio)
-    bw=pad_width
-    canvas = Image.new(img.mode, (w+bw,h),'white')
-    blank=Image.new(img.mode,(bw,h),color='white')
-    font_size=font_size or max(16,int(bw/line_length))
-    default_font = get_default_font(font_size=font_size)
-    font = font or default_font
-    blank=draw_text(blank,text,(5,5),font=font)
-    canvas.paste(img)
-    canvas.paste(blank,(w,0,w+bw,h))
-    return canvas
-########################Crop########################
-def crop_boxes(img,boxes):
-    imgs=[]
-    for box in boxes:
-        im=crop(img,box)
-        imgs.append(im)
-    return imgs
-def iter_boxes(img,boxes,do):
-    reses=[]
-    for box in boxes:
-        im=crop(img,box)
-        res=do(im)
-        reses.append(res)
-    return reses
-def crop(img,bbox):
-    return img.crop(bbox)
-def crop_by_ratio(img,rbox):
-    w,h=img.size
-    box=tuple([int(x) for x in (rbox[0]*w,rbox[1]*h,rbox[2]*w,rbox[3]*h)])
-    return img.crop(box)
-def crop_quad(img,box):
-    p0, p1, p2, p3 = box
-    (x0, y0), (x1, y1), (x2, y2), (x3, y3) = box
-    w,h=((x1-x0+x2-x3)//2,(y3-y0+y2-y1)//2)
-    w,h=int(w),int(h)
-    M=cv2.getPerspectiveTransform(np.float32([p0,p1,p3,p2]),np.float32([[0,0],[w,0],[0,h],[w,h]]))
-    img=cv2.warpPerspective(img,M,(w,h))
-    return img
-def crop_quads(img,boxes):
-    bims=[]
-    for box in boxes:
-        bims.append(crop_quad(img,box))
-    return bims
-#######################Show#############################
-def cv2img(img):
-    if isinstance(img,Image.Image):
-        img=np.array(img)
-        if len(img.shape)==3:img=img[:,:,::-1]
-        return img
-    return img
-def pilimg(img):
-    if isinstance(img,Image.Image):return img
-    if isinstance(img,np.ndarray):
-        if len(img.shape)==3:img=img[:,:,::-1]
-    return Image.fromarray(np.array(img).astype(np.uint8))
-def pilimshow(x,*args,**kwargs):
-    x=pilimg(x)
-    x.show(*args,**kwargs)
-def cv2imshow(x,title='cv2 image'):
-    x=cv2img(x)
-    cv2.imshow(title,x)
-    cv2.waitKey(0)
-def pltimshow(x,*args,**kwargs):
-    x=cv2img(x)
-    plt.imshow(x,*args,**kwargs)
-    plt.show()
-########################ImageSaver###########################
-class ImageSaver:
-    def __init__(self,save_dir=None,remake_dir=False,start_file_index=0):
-        save_dir=save_dir or './tmp_image_save_dir'
-        import time
-        if os.path.exists(save_dir) and remake_dir:
-            shutil.rmtree(save_dir)
-            time.sleep(0.01)
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)
-        self.save_dir=save_dir
-        self.remake_dir=remake_dir
-        self.file_index=start_file_index
-        self.alive=True
-    def deactive(self):
-        self.alive=False
-    def active(self):
-        self.alive=True
-    def save(self,img,name=None):
-        if not self.alive:
-            return False
-        name=name or '%s.jpg'%self.file_index
-        name=os.path.join(self.save_dir,name)
-        if isinstance(img, Image.Image):
-            img.save(name)
+def rotate_boxes(boxes,angle,cx,cy,h,w):
+    '''原创'''
+    boxes=[list(box) for box in boxes]
+    corners = [ltrb_to_four_corners(box) for box in boxes]
+    corners=rotate_points(corners,angle,cx,cy,h,w)
+    boxes=[four_coners_to_ltrb(quad_to_four_corners(organize_quad_points(four_corners_to_quad(list(box))))) for box in corners]
+    return boxes
+def rotate_box(box, angle, cx, cy, h, w):
+    return rotate_boxes([box],angle,cx,cy,h,w)
+def shift_box(box,offset,limits=None):
+    l,t,r,b=box
+    ofx,ofy=offset
+    l+=ofx
+    r+=ofx
+    t+=ofy
+    b+=ofy
+    return limit_box([l,t,r,b],limits=limits)
+def translate_box(box,offset,limits=None):
+    return shift_box(box,offset,limits)
+def flip_box_horizontal(box,imsize):
+    imw,imh=imsize
+    l,t,r,b=box
+    l=imw-r
+    r=imw-l
+    return [l,t,r,b]
+def flip_box_vertical(box,imsize):
+    imw,imh=imsize
+    l,t,r,b=box
+    t=imh-b
+    b=imh-t
+    return [l,t,r,b]
+def pad_box(box,pad_size=5,pad_ratio=None,limits=None):
+    from math import inf
+    limits=limits or (-inf,-inf,inf,inf)
+    l,t,r,b=box
+    bh=b-t
+    bw=r-l
+    if pad_ratio is not None:
+        if isinstance(pad_ratio,(tuple,list)):
+            if len(pad_ratio)==2:
+                pad_l=pad_r=int(min(bh,bw)*pad_ratio[0])
+                pad_t=pad_b=int(min(bh,bw)*pad_ratio[1])
+            else:
+                assert len(pad_ratio)==4
+                pad_l= int(min(bh, bw) * pad_ratio[0])
+                pad_t= int(min(bh, bw) * pad_ratio[1])
+                pad_r= int(min(bh, bw) * pad_ratio[2])
+                pad_b= int(min(bh, bw) * pad_ratio[3])
         else:
-            cv2.imencode('.jpg', img)[1].tofile(name)
-        self.file_index+=1
-        return name
+            pad_l=pad_t=pad_r=pad_b=int(min(bh,bw)*pad_ratio)
+    else:
+        if isinstance(pad_size,(tuple,list)):
+            if len(pad_size)==2:
+                pad_l=pad_r=pad_size[0]
+                pad_t=pad_b=pad_size[1]
+            else:
+                assert len(pad_size)==4
+                pad_l,pad_t,pad_r,pad_b=pad_size
+        else:
+            pad_l=pad_t=pad_r=pad_b=pad_size
+    l-=pad_l
+    t-=pad_t
+    r+=pad_r
+    b+=pad_b
+    return limit_box([l,t,r,b],limits=limits)
+def limit_box(box,limits=None):
+    if limits is None:return box
+    if len(limits)==2:
+        ml,mt=0,0
+        mr,mb=limits
+    else:
+        assert len(limits)==4
+        ml,mt,mr,mb=limits
+    l,t,r,b=box
+    l=max(ml,l)
+    t=max(mt,t)
+    r=min(mr,r)
+    b=min(mb,b)
+    if l>=r:
+        return None
+    if t>=b:return None
+    return [l,t,r,b]
+############################Sort Operations#############################
+def min_enclosing_box(boxes):
+    assert len(boxes)
+    ml,mt,mr,mb=boxes[0]
+    for box in boxes[1:]:
+        l,t,r,b=box
+        ml=min(ml,l)
+        mt=min(mt,t)
+        mr=max(mr,r)
+        mb=max(mb,b)
+    return [ml,mt,mr,mb]
+def box_in_area(box,size):
+    l,t,r,b=box
+    mr,mb=size
+    if l<0 or t<0 or r>mr or b>mb:
+        return False
+    else:
+        return True
+
+def organize_quad_points(box):
+    '''
+    turn into clock-wise points: quad
+    p0:lt,p1:rt,p2:rb,p4:lb
+    '''
+    p0,p3, p1,p2 = sorted(box, key=lambda p: p[0])
+    p03=[p0,p3]
+    p12=[p1,p2]
+    p0, p3 = sorted(p03, key=lambda p: p[1])
+    p1, p2 = sorted(p12, key=lambda p: p[1])
+    return [p0,p1,p2,p3]
+def sort_boxes(boxes):
+    from functools import cmp_to_key
+    boxes=[ltrb_to_ccwh(box) for box in boxes]
+    boxes=[[box] for box in boxes]
+    def block_cmp(b1, b2):
+        list1 = [b1[0][0], b1[0][1], b1[0][2], b1[0][3]]
+        list2 = [b2[0][0], b2[0][1], b2[0][2], b2[0][3]]
+        if len(b1[0]) == 4:
+            list1[0] += list1[2] / 2
+            list1[1] += list1[3] / 2
+            list2[0] += list2[2] / 2
+            list2[1] += list2[3] / 2
+
+        flag = 1
+        if list1[0] > list2[0]:
+            list1, list2 = list2, list1
+            flag = -1
+
+        if list2[1] + list1[3] / 2 < list1[1]:
+            return flag
+        return -flag
+
+    boxes.sort(key=cmp_to_key(block_cmp), reverse=False)
+    boxes=[box[0] for box in boxes]
+    boxes=[ccwh_to_ltrb(box) for box in boxes]
+    return boxes
+############################ConvertingTools#############################
+def ltrb_to_four_corners(box):
+    '''four corners: 8-d vector clock-wise'''
+    l,t,r,b=box
+    box2=[l,t,r,t,r,b,l,b]
+    return box2
+def four_coners_to_ltrb(box,sort=False):
+    x1,y1,x2,y2,x4,y4,x3,y3=box
+    l=min(x1,x3)
+    r=max(x2,x4)
+    t=min(y1,y2)
+    b=max(y3,y4)
+    if sort:
+        newbox = [min(l, r), min(t, b), max(l, r), max(t, b)]
+    else:
+        newbox=[l,t,r,b]
+    return newbox
+def ltrb_to_ccwh(box):
+    l, t, r, b = box
+    w = r - l
+    h = b - t
+    cx = (l + r) // 2
+    cy = (t + b) // 2
+    return [cx,cy,w,h]
+def ccwh_to_ltrb(box):
+    cx,cy,w,h=box
+    l=cx-w//2
+    t=cy-h//2
+    r=cx+w//2
+    b=cy+h//2
+    return [l,t,r,b]
+def oowh_to_ltrb(box):
+    '''o:origin'''
+    x, y, w, h = box
+    return [int(i) for i in (x, y, x + w, y + h)]
+def ltrb_to_oowh(box):
+    l, t, r, b = box
+    return [l, t, r - l, b - t]
+def xywh_to_ltrb(box):
+    '''same with oowh'''
+    x,y,w,h=box
+    return [int(i) for i in (x,y,x+w,y+h)]
+def ltrb_to_xywh(box):
+    l,t,r,b=box
+    return [l,t,r-l,b-t]
+def quad_to_ltrb(box):
+    '''quad: clock-wise four points'''
+    (x0,y0),(x1,y1),(x2,y2),(x3,y3)=box
+    return [min(x0,x3),min(y0,y1),max(x1,x2),max(y2,y3)]
+def ltrb_to_quad(box):
+    x0,y0,x1,y1=box
+    return [(x0,y0),(x1,y0),(x1,y1),(x0,y1)]
+def quad_to_four_corners(quad):
+    (x0, y0), (x1, y1), (x2, y2), (x3, y3) = quad
+    return [x0,y0,x1,y1,x2,y2,x3,y3]
+def four_corners_to_quad(box):
+    x0,y0,x1,y1,x2,y2,x3,y3 = box
+    return [(x0, y0), (x1, y1), (x2, y2), (x3, y3)]
+###########################Calculations##############################
+def calc_iou(box1,box2):
+    l1,t1,r1,b1=box1
+    l2,t2,r2,b2=box2
+    w1,h1=r1-l1,b1-t1
+    w2,h2=r2-l2,b2-t2
+    width=min(r1,r2)-max(l1,l2)
+    height=min(b1,b2)-max(t1,t2)
+    width=max(width,0)
+    height=max(height,0)
+    area=width*height
+    return area/(w1*h1+w2*h2-area)
+def calc_iou2(box1,box2):
+    width=min(box1[2],box2[2])-max(box1[0],box2[0])
+    height=min(box1[3],box2[3])-max(box1[1],box2[1])
+    width=max(width,0)
+    height=max(height,0)
+    area=width*height
+    return area/((box1[2]-box1[0])*(box1[3]-box1[1])+(box2[2]-box2[0])*(box2[3]-box2[1])-area)
+def calc_iou_batch_with_batch(boxes1,boxes2):
+    box1=boxes1
+    box2=boxes2
+    import numpy as np
+    box1=np.array(box1)
+    box2=np.array(box2)
+    width = np.min(np.vstack([box1[...,2], box2[...,2]]),axis=0) - np.max(np.vstack([box1[...,0], box2[...,0]]),axis=0)
+    height = np.min(np.vstack([box1[...,3], box2[...,3]]),axis=0) - np.max(np.vstack([box1[...,1], box2[...,1]]),axis=0)
+    width = np.clip(width,0,np.inf)
+    height = np.clip(height,0,np.inf)
+    area = width * height
+    return area / ((box1[...,2] - box1[...,0]) * (box1[...,3] - box1[...,1]) + (box2[...,2] - box2[...,0]) * (box2[...,3] - box2[...,1]) - area)
+def calc_iou_batch(boxes,box):
+    '''calculate iou between batch bboxes with one bbox , 原创'''
+    box1=boxes
+    box2=box
+    import numpy as np
+    box1 = np.array(box1)
+    box2 = np.array(box2)
+    shape=box1.shape
+    width = np.min(np.vstack([box1[..., 2], np.full(shape[:-1],box2[2])]), axis=0) - np.max(np.vstack([box1[..., 0], np.full(shape[:-1],box2[0])]),axis=0)
+    height = np.min(np.vstack([box1[..., 3], np.full(shape[:-1],box2[3])]), axis=0) - np.max(np.vstack([box1[..., 1], np.full(shape[:-1],box2[1])]),axis=0)
+    width = np.clip(width, 0, np.inf)
+    height = np.clip(height, 0, np.inf)
+    area = width * height
+    return area / ((box1[...,2] - box1[...,0]) * (box1[...,3] - box1[...,1]) + (box2[2] - box2[0]) * (box2[3] - box2[1]) - area)
+def calc_quad_angle(quad):
+    '''cal angle of a quad'''
+    p0,p1,p2,p3=quad
+    def center(p1,p2):
+        x1,y1=p1
+        x2,y2=p2
+        return (x1+x2)/2,(y1+y2)/2
+    x1,y1=center(p0,p3)
+    x2,y2=center(p1,p2)
+    angle=math.atan2(y1-y2,x2-x1)*180/math.pi
+    return angle
+def calc_box_area(box):
+    l,t,r,b=box
+    return (r-l)*(b-t)
+##############################TextBox################################
+class TextBox(dict):
+    def __init__(self):
+        super().__init__()
+    def parse(self):
+        p0,p1,p2,p3=quad=self['quad']
+        xmin,ymin,xmax,ymax=l,t,r,b=ltrb=quad_to_ltrb(quad)
+        ox,oy,w,h=oowh=ltrb_to_oowh(ltrb)
+        cx,cy,w,h=ccwh=ltrb_to_ccwh(ltrb)
+        angle=calc_quad_angle(quad)
+        text=None
+        prob=None
+        self.update(
+            ltrb=ltrb,oowh=oowh,ccwh=ccwh,
+            xmin=xmin,ymin=ymin,xmax=xmax,ymax=ymax,
+            l=l,t=t,r=r,b=b,
+            ox=ox,oy=oy,w=w,h=h,
+            cx=cx,cy=cy,
+            angle=angle,
+            text=text,
+            prob=prob
+        )
+        return self

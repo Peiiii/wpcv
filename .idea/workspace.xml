@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2de4013-8abd-4a11-906e-ca5dc5610a15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/wpcv-0.0.1.4-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/wpcv-0.0.1.4.tar.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv.egg-info/PKG-INFO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv.egg-info/SOURCES.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/boxutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/boxutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/dataset.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,11 +40,12 @@
     </option>
   </component>
   <component name="ProjectId" id="1c9YsdKSWJSNU14DvZK9UUQ5uve" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/info/imgs" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -61,7 +74,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.scratch_5">
+    <configuration name="scratch_5" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="wpcv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="tofcltrb" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -86,6 +121,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.scratch_5" />
         <item itemvalue="Python.tofcltrb" />
       </list>
     </recent_temporary>
@@ -104,7 +140,11 @@
       <workItem from="1590541895082" duration="1712000" />
       <workItem from="1590627600649" duration="549000" />
       <workItem from="1590754282438" duration="2306000" />
-      <workItem from="1590768758296" duration="9052000" />
+      <workItem from="1590768758296" duration="12468000" />
+      <workItem from="1590972189730" duration="284000" />
+      <workItem from="1590972829254" duration="583000" />
+      <workItem from="1591068611850" duration="620000" />
+      <workItem from="1591078138593" duration="910000" />
     </task>
     <servers />
   </component>
@@ -126,6 +166,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/wpcv$tococo.coverage" NAME="tococo Coverage Results" MODIFIED="1590117140756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
+    <SUITE FILE_PATH="coverage/wpcv$scratch_5.coverage" NAME="scratch_5 Coverage Results" MODIFIED="1590835689532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/wpcv$tofcltrb.coverage" NAME="tofcltrb Coverage Results" MODIFIED="1590115497605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
   </component>
 </project>

@@ -44,13 +44,13 @@ def split_list(lis,ratios,shuffle=True):
     ratios=np.array(ratios)
     ratios=ratios/ratios.sum()
     nums=ratios*len(lis)
-    nums=np.round(nums)
+    nums=np.round(nums).astype(int)
     total=len(lis)
     splits=[]
     current_index=0
     for i,num in enumerate(nums):
         end_point=min(current_index+num,total)
-        batch=lis[current_index,end_point]
+        batch=lis[current_index:end_point]
         splits.append(batch)
         current_index=end_point
     return splits
