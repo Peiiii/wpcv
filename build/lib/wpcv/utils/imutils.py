@@ -135,7 +135,7 @@ def draw_box(img,box,copy=True,width=5,outline='red',fill=None):
     draw.rectangle((box[:2],box[2:]),width=width,outline=outline,fill=fill)
     return img
 def draw_polygon(img,points,color='blue',width=1):
-    points=[tuple(p) for p in points]
+    points=[tuple(list(p)) for p in points]
     draw=ImageDraw.Draw(img)
     points.append(points[0])
     draw.line(points,fill=color,width=width)

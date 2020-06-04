@@ -262,7 +262,7 @@ def gaussion_noise(image, mean=0, var=0.001):
 
 # ##################################
 def get_enclosing_box(corners):
-
+    # corners
     """Get an enclosing box for ratated corners of a bounding box
 
     Parameters
