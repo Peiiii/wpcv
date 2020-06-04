@@ -4,9 +4,8 @@
     <list default="true" id="e2de4013-8abd-4a11-906e-ca5dc5610a15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/object_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/augmentations/object_detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/trans.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/imutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/imutils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/opencv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/transforms/pil.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/transforms/pil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/transforms/points.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/transforms/points.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -206,7 +205,7 @@
       <workItem from="1590972189730" duration="284000" />
       <workItem from="1590972829254" duration="583000" />
       <workItem from="1591068611850" duration="620000" />
-      <workItem from="1591078138593" duration="43359000" />
+      <workItem from="1591078138593" duration="55598000" />
     </task>
     <servers />
   </component>
@@ -229,10 +228,10 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/wpcv$pil_emboss_numpy.coverage" NAME="pil_emboss_numpy Coverage Results" MODIFIED="1591162140128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/scripts" />
     <SUITE FILE_PATH="coverage/wpcv$tococo.coverage" NAME="tococo Coverage Results" MODIFIED="1590117140756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
-    <SUITE FILE_PATH="coverage/wpcv$object_detection.coverage" NAME="object_detection Coverage Results" MODIFIED="1591182655174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/augmentations" />
+    <SUITE FILE_PATH="coverage/wpcv$object_detection.coverage" NAME="object_detection Coverage Results" MODIFIED="1591253619674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/augmentations" />
     <SUITE FILE_PATH="coverage/wpcv$scratch_5.coverage" NAME="scratch_5 Coverage Results" MODIFIED="1590835689532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/wpcv$pil_adjust_hue_saturation.coverage" NAME="pil_adjust_hue_saturation Coverage Results" MODIFIED="1591167358998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/scripts" />
     <SUITE FILE_PATH="coverage/wpcv$tofcltrb.coverage" NAME="tofcltrb Coverage Results" MODIFIED="1590115497605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
-    <SUITE FILE_PATH="coverage/wpcv$pil.coverage" NAME="pil Coverage Results" MODIFIED="1591169224758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/transforms" />
+    <SUITE FILE_PATH="coverage/wpcv$pil.coverage" NAME="pil Coverage Results" MODIFIED="1591247511275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/transforms" />
   </component>
 </project>

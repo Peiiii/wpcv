@@ -10,16 +10,16 @@ from wpcv.utils.augmentations.base import Compose, Zip, ToPILImage
 import wpcv.utils.augmentations.base as BT
 
 
-class BboxToPoints(object):
-    def __call__(self, img, bbox):
-        points = np.array(bbox).reshape((-1, 2))
+class BboxesToPoints(object):
+    def __call__(self, img, bboxes):
+        points = np.array(bboxes).reshape((-1, 2, 2))
         return img, points
 
 
-class PointsToBbox(object):
+class PointsToBboxes(object):
     def __call__(self, img, points):
-        bbox = np.array(points).reshape((-1))
-        return img, bbox
+        bboxes = np.array(points).reshape((-1,4))
+        return img, bboxes
 
 
 class Reshape(object):
@@ -73,7 +73,7 @@ class RandomHorizontalFlip(object):
         imw, imh = img.size
         if random.random() < self.p:
             img = IM.hflip(img)
-            points = PT.hflip(points, imw)
+            points = [PT.hflip(pnts, imw) for pnts in points]
         return img, points
 
     def __repr__(self):
@@ -88,47 +88,99 @@ class RandomVerticalFlip(object):
         imw, imh = img.size
         if random.random() < self.p:
             img = IM.vflip(img)
-            points = PT.vflip(points, imh)
+            points = [PT.vflip(pnts, imh) for pnts in points]
         return img, points
 
     def __repr__(self):
         return self.__class__.__name__ + '(p={})'.format(self.p)
-class RandomAffine(object):
-    def __init__(self):
-        pass
-    def __call__(self, *args, **kwargs):
-        BT.RandomAffine
-class Affine(object):
-    def affine(img, angle, translate, scale, shear, resample=0, fillcolor=None):
-        """Apply affine transformation on the image keeping image center invariant
 
-        Args:
-            img (PIL Image): PIL Image to be rotated.
-            angle (float or int): rotation angle in degrees between -180 and 180, clockwise direction.
-            translate (list or tuple of integers): horizontal and vertical translations (post-rotation translation)
-            scale (float): overall scale
-            shear (float or tuple or list): shear angle value in degrees between -180 to 180, clockwise direction.
-            If a tuple of list is specified, the first value corresponds to a shear parallel to the x axis, while
-            the second value corresponds to a shear parallel to the y axis.
-            resample (``PIL.Image.NEAREST`` or ``PIL.Image.BILINEAR`` or ``PIL.Image.BICUBIC``, optional):
-                An optional resampling filter.
-                See `filters`_ for more information.
-                If omitted, or if the image has mode "1" or "P", it is set to ``PIL.Image.NEAREST``.
-            fillcolor (int): Optional fill color for the area outside the transform in the output image. (Pillow>=5.0.0)
-        """
 
-        assert isinstance(translate, (tuple, list)) and len(translate) == 2, \
-            "Argument translate should be a list or tuple of length 2"
+class RandomTranslate(object):
+    def __init__(self,max_offset=None,fillcolor='black'):
+        if max_offset is not None and len(max_offset)==2:
+            mx,my=max_offset
+            max_offset=[-mx,-my,mx,my]
+        self.max_offset=max_offset
+        self.fillcolor=fillcolor
+    def __call__(self, img,points):
+        rang=PT.get_translate_range(points,img.size)
+        if self.max_offset:
+            def limit_box(box, limits=None):
+                if limits is None: return box
+                if len(limits) == 2:
+                    ml, mt = 0, 0
+                    mr, mb = limits
+                else:
+                    assert len(limits) == 4
+                    ml, mt, mr, mb = limits
+                l, t, r, b = box
+                l = max(ml, l)
+                t = max(mt, t)
+                r = min(mr, r)
+                b = min(mb, b)
+                if l > r:
+                    return None
+                if t > b: return None
+                return [l, t, r, b]
+            rang=limit_box(rang,self.max_offset)
+            if rang is None:
+                return img,points
+        ofx=random.randint(rang[0],rang[2])
+        ofy=random.randint(rang[1],rang[3])
+        img=IM.translate(img,offset=(ofx,ofy),fillcolor=self.fillcolor)
+        points=[PT.translate(pnts,(ofx,ofy)) for pnts in points]
+        return img,points
 
-        assert scale > 0.0, "Argument scale should be positive"
+class RandomRotate(object):
+    def __init__(self,degree,expand=True):
+        self.degree=degree if not isinstance(degree,numbers.Number) else [-degree,degree]
+        self.expand=expand
+    def __call__(self,img,points):
+        degree=random.random()*(self.degree[1]-self.degree[0])+self.degree[0]
+        w, h = img.size
+        img=IM.rotate(img,degree,expand=self.expand)
+        points=[PT.rotate(pnts,degree,(w//2,h//2),img_size=(w,h),expand=self.expand) for pnts in points]
+        return img,points
 
-        output_size = img.size
-        center = (img.size[0] * 0.5 + 0.5, img.size[1] * 0.5 + 0.5)
-        matrix = _get_inverse_affine_matrix(center, angle, translate, scale, shear)
-        kwargs = {"fillcolor": fillcolor} if PILLOW_VERSION[0] >= '5' else {}
-        print(matrix)
-        return img.transform(output_size, Image.AFFINE, matrix, resample, **kwargs)
+class RandomShearX(object):
+    def __init__(self,degree):
+        self.degree=degree if not isinstance(degree,numbers.Number) else [-degree,degree]
+    def __call__(self,img,points):
+        degree = random.random() * (self.degree[1] - self.degree[0]) + self.degree[0]
+        w, h = img.size
+        img = IM.shear_x(img, degree)
+        points = [PT.shear_x(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
+        return img, points
+class RandomShearY(object):
+    def __init__(self,degree):
+        self.degree=degree if not isinstance(degree,numbers.Number) else [-degree,degree]
+    def __call__(self,img,points):
+        degree = random.random() * (self.degree[1] - self.degree[0]) + self.degree[0]
+        w, h = img.size
+        img = IM.shear_y(img, degree)
+        points = [PT.shear_y(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
+        return img, points
+class RandomShear(object):
+    def __init__(self,xdegree,ydegree=None):
+        def get_param(param,defualt=None):
+            if param is None:return defualt
+            return param if not isinstance(param,numbers.Number) else [-param,param]
+        self.xdegree=get_param(xdegree)
+        self.ydegree=get_param(ydegree)
 
+
+    def __call__(self,img,points):
+        if self.xdegree:
+            degree = random.random() * (self.xdegree[1] - self.xdegree[0]) + self.xdegree[0]
+            w, h = img.size
+            img = IM.shear_x(img, degree)
+            points = [PT.shear_x(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
+        if self.ydegree:
+            degree = random.random() * (self.ydegree[1] - self.ydegree[0]) + self.ydegree[0]
+            w, h = img.size
+            img = IM.shear_y(img, degree)
+            points = [PT.shear_y(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
+        return img, points
 
 class RandomAffine(object):
     """Random affine transformation of the image keeping center invariant
@@ -258,7 +310,9 @@ def demo():
             ]),
             Identical()
         ]),
-        RandomAffine(30)
+        # RandomRotate(30),
+        # RandomShear(30,30),
+        # RandomTranslate(max_offset=[100,100]),
         # RandomHorizontalFlip(),
         # RandomVerticalFlip(),
         # PointsToBbox()
@@ -281,8 +335,9 @@ def demo():
           254.28571428571428,
           305.04761904761904
         ]]
-    img, points = transform(img, points)
-    img=wpcv.draw_polygon(img,points)
+    img, points = transform(img, [points])
+    # print(points)
+    img=wpcv.draw_polygon(img,points[0])
     img.show()
     # print(img.size, box)
 

@@ -297,7 +297,8 @@ def scale(img,scale):
 def resize(img,size):
     img=img.resize(size)
     return img
-def shift(img,offset,fill=(0,0,0)):
+def shift(img,offset,fillcolor=(0,0,0)):
+    fill=fillcolor
     w,h=img.size
     ofx,ofy=offset
     img = ImageChops.offset(img,ofx,ofy)
@@ -313,8 +314,8 @@ def shift(img,offset,fill=(0,0,0)):
         else:
             img.paste(fill,(0,0,w,ofy))
     return img
-def translate(img,offset,fill=(0,0,0)):
-    return shift(img,offset,fill)
+def translate(img,offset,fillcolor=(0,0,0)):
+    return shift(img,offset,fillcolor)
 def hflip(img):
     img=img.transpose(Image.FLIP_LEFT_RIGHT)
     return img
@@ -322,9 +323,7 @@ def vflip(img):
     img=img.transpose(Image.FLIP_TOP_BOTTOM)
     return img
 
-def rotate(img,degree,expand=True,fill='black',translate=None):
-    img=img.rotate(degree,expand=expand,fillcolor=fill,translate=translate)
-    return img
+
 def pad(img,dst_size,method=Image.BICUBIC, color=None):
     img=ImageOps.pad(img,dst_size,method=method,color=color)
     return img
@@ -336,9 +335,11 @@ def center_crop(img, output_size):
         output_size = (int(output_size), int(output_size))
     w, h = img.size
     th, tw = output_size
-    i = int(round((h - th) / 2.))
-    j = int(round((w - tw) / 2.))
-    return crop(img, i, j, th, tw)
+    l = int(round((h - th) / 2.))
+    t = int(round((w - tw) / 2.))
+    r=l+int(tw)
+    b=t+int(th)
+    return crop(img, [l,t,r,b])
 def crop_quad(img,quad,dst_size):
     '''quad:[four points clock-wise],size:target size'''
     assert isinstance(img,Image.Image)
@@ -347,6 +348,9 @@ def crop_quad(img,quad,dst_size):
         return points
     quad=invert(quad)
     img=img.transform(dst_size,Image.QUAD,data=quad)
+    return img
+def rotate(img,degree,expand=True,fill='black',translate=None):
+    img=img.rotate(degree,expand=expand,fillcolor=fill,translate=translate)
     return img
 def shear_x(img, degree, **kwargs):
     import math
@@ -553,6 +557,9 @@ def _demo():
     im=poisson_noise(img)
     saver.save(im)
     im=speckle_noise(img)
+    saver.save(im)
+
+    im=rotate(img,30,expand=False)
     saver.save(im)
 
     im.show()
