@@ -49,6 +49,45 @@ def blank_rgb(size=(512,48),color='white'):
 def new_blank_img_as(img):
     img=Image.new('RGB',size=img.size,color='white')
     return img
+def concat_image_horizontal(imgs,h='max',mode='RGB'):
+    '''
+    :param img1:
+    :param img2:
+    :param h: 'first','mean ,'max','remain'
+    :return:
+    '''
+    if h=='max':
+        h=max([im.size[1] for im in imgs])
+    imgs=[resize_to_fixed_height(img,h) for img in imgs]
+    w=sum([im.size[0] for im in imgs])
+    canvas=Image.new(mode=mode,size=(w,h),color=0)
+    hook=[0,0]
+    print(w,h)
+    for img in imgs:
+        print(hook,img.size)
+        canvas.paste(img,hook.copy())
+        print(hook)
+        hook[0]+=img.size[0]
+        print(hook)
+    return canvas
+
+def concat_image_vertical(imgs,w='max',mode='RGB'):
+    '''
+    :param img1:
+    :param img2:
+    :param h: 'first','mean ,'max','remain'
+    :return:
+    '''
+    if w=='max':
+        w=max([im.size[0] for im in imgs])
+    imgs=[resize_to_fixed_width(img,w) for img in imgs]
+    h=sum([im.size[1] for im in imgs])
+    canvas=Image.new(mode=mode,size=(w,h),color=0)
+    hook=[0,0]
+    for img in imgs:
+        canvas.paste(img,hook)
+        hook[1]+=img.size[1]
+    return canvas
 ###################Size#######################
 def resize_to_fixed_height(img,height):
     w,h=img.size
@@ -198,9 +237,9 @@ def crop_by_ratio(img,rbox):
     w,h=img.size
     box=tuple([int(x) for x in (rbox[0]*w,rbox[1]*h,rbox[2]*w,rbox[3]*h)])
     return img.crop(box)
-def crop_quad(img,box):
-    p0, p1, p2, p3 = box
-    (x0, y0), (x1, y1), (x2, y2), (x3, y3) = box
+def crop_quad(img,quad):
+    p0, p1, p2, p3 = quad
+    (x0, y0), (x1, y1), (x2, y2), (x3, y3) = quad
     w,h=((x1-x0+x2-x3)//2,(y3-y0+y2-y1)//2)
     w,h=int(w),int(h)
     M=cv2.getPerspectiveTransform(np.float32([p0,p1,p3,p2]),np.float32([[0,0],[w,0],[0,h],[w,h]]))
@@ -260,6 +299,8 @@ class ImageSaver:
         if isinstance(img, Image.Image):
             img.save(name)
         else:
-            cv2.imencode('.jpg', img)[1].tofile(name)
+            img=np.array(img).astype(np.uint8)
+            pilimg(img).save(name)
+            # cv2.imencode('.jpg', img)[1].tofile(name)
         self.file_index+=1
         return name

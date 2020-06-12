@@ -107,6 +107,74 @@ def pad_box(box,pad_size=5,pad_ratio=None,limits=None):
     r+=pad_r
     b+=pad_b
     return limit_box([l,t,r,b],limits=limits)
+
+def pad_quad(quad,pad_size=5,pad_ratio=None,limits=None):
+    import math
+    from math import inf
+    limits=limits or (-inf,-inf,inf,inf)
+    def dist(p1,p2):
+        return math.sqrt((p1[0]-p2[0])**2+(p1[1]-p2[1])**2)
+    def mean(li):
+        return sum(li)/len(li)
+    def minus(la,lb):
+        return [x-y for x,y in zip(la,lb)]
+    def add(la,lb):
+        return [x +y for x, y in zip(la, lb)]
+    def get_pad_params(pad_size,pad_ratio,quad ):
+        # l, t, r, b = box
+        p0,p1,p2,p3=quad
+        bh = mean([dist(p0,p3),dist(p1,p2)])
+        bw = mean([dist(p0,p1),dist(p3,p2)])
+        if pad_ratio is not None:
+            if isinstance(pad_ratio, (tuple, list)):
+                if len(pad_ratio) == 2:
+                    pad_l = pad_r = int(min(bh, bw) * pad_ratio[0])
+                    pad_t = pad_b = int(min(bh, bw) * pad_ratio[1])
+                else:
+                    assert len(pad_ratio) == 4
+                    pad_l = int(min(bh, bw) * pad_ratio[0])
+                    pad_t = int(min(bh, bw) * pad_ratio[1])
+                    pad_r = int(min(bh, bw) * pad_ratio[2])
+                    pad_b = int(min(bh, bw) * pad_ratio[3])
+            else:
+                pad_l = pad_t = pad_r = pad_b = int(min(bh, bw) * pad_ratio)
+        else:
+            if isinstance(pad_size, (tuple, list)):
+                if len(pad_size) == 2:
+                    pad_l = pad_r = pad_size[0]
+                    pad_t = pad_b = pad_size[1]
+                else:
+                    assert len(pad_size) == 4
+                    pad_l, pad_t, pad_r, pad_b = pad_size
+            else:
+                pad_l = pad_t = pad_r = pad_b = pad_size
+        return pad_l,pad_t,pad_r,pad_b
+    pad_l, pad_t, pad_r, pad_b=get_pad_params(pad_size,pad_ratio,quad)
+    p0, p1, p2, p3 = quad
+    p0=add(p0,[-pad_l,-pad_t])
+    p1=add(p1,[pad_r,-pad_t])
+    p2=add(p2,[pad_r,pad_b])
+    p3=add(p3,[-pad_l,pad_b])
+
+    return limit_quad([p0,p1,p2,p3],limits=limits)
+
+def limit_point(p,limits):
+    if limits is None:return p
+    if len(limits)==2:
+        ml,mt=0,0
+        mr,mb=limits
+    else:
+        assert len(limits)==4
+        ml,mt,mr,mb=limits
+    x,y=p
+    x=max(ml,min(mr,x))
+    y=max(mt,min(mb,y))
+    return [x,y]
+
+def limit_quad(quad,limits=None):
+    quad=[limit_point(p,limits) for p in quad]
+    return quad
+
 def limit_box(box,limits=None):
     if limits is None:return box
     if len(limits)==2:

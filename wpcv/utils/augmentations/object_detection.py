@@ -6,10 +6,17 @@ from PIL import Image
 import wpcv
 from wpcv.utils.transforms import pil as IM
 from wpcv.utils.transforms import points as PT
-from wpcv.utils.augmentations.base import Compose, Zip, ToPILImage
+from wpcv.utils.augmentations.base import Compose, Zip,RandomMultiChoice
 import wpcv.utils.augmentations.base as BT
 
-
+class ToPILImage(object):
+    def __init__(self):
+        self.to=BT.ToPILImage()
+    def __call__(self, img,*args):
+        if len(args):
+            return (self.to(img),*args)
+        else:
+            return self.to(img)
 class BboxesToPoints(object):
     def __call__(self, img, bboxes):
         points = np.array(bboxes).reshape((-1, 2, 2))
@@ -310,12 +317,11 @@ def demo():
             ]),
             Identical()
         ]),
-        # RandomRotate(30),
-        # RandomShear(30,30),
-        # RandomTranslate(max_offset=[100,100]),
-        # RandomHorizontalFlip(),
-        # RandomVerticalFlip(),
-        # PointsToBbox()
+        RandomRotate(30),
+        RandomShear(30,30),
+        RandomTranslate(max_offset=[100,100]),
+        RandomHorizontalFlip(),
+        RandomVerticalFlip(),
     ])
     img = Image.open('/home/ars/图片/2019011816055827.jpg')
 
@@ -337,7 +343,7 @@ def demo():
         ]]
     img, points = transform(img, [points])
     # print(points)
-    img=wpcv.draw_polygon(img,points[0])
+    img=wpcv.draw_polygon(img,points[0],width=3)
     img.show()
     # print(img.size, box)
 

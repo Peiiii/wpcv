@@ -105,6 +105,23 @@ class Zip(object):
             res.append(transform(arg))
         return tuple(res)
 
+class RandomMultiChoice(object):
+    def __init__(self,transforms,probs=None):
+        self.transforms=transforms
+        if not probs:
+            probs=[0.5 for t in transforms]
+        self.probs=probs
+    def __call__(self,*args):
+        x=args
+        for i in range(len(self.transforms)):
+            if random.random()<self.probs[i]:
+                x=self.transforms[i](*x)
+                if not isinstance(x,tuple):
+                    x=(x,)
+        if isinstance(x,(tuple,)) and len(x)==1:
+            return x[0]
+        else:
+            return x
 
 class ToTensor(object):
     """Convert a ``PIL Image`` or ``numpy.ndarray`` to tensor.

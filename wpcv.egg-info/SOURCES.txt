@@ -11,6 +11,9 @@ wpcv/models/resnet/predict.py
 wpcv/models/resnet/test.py
 wpcv/models/resnet/train.py
 wpcv/models/resnet/val.py
+wpcv/models/resnet_v2/__init__.py
+wpcv/models/resnet_v2/model.py
+wpcv/models/resnet_v2/train.py
 wpcv/scripts/__init__.py
 wpcv/scripts/pil_adjust_hue_saturation.py
 wpcv/scripts/pil_emboss_numpy.py

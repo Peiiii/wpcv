@@ -28,7 +28,7 @@ def translate(points,offset):
     points=np.array(points)+np.array(offset)
     return points
 def get_translate_range(points,limits):
-    points=np.array(points).reshape(-1,2)
+    points=np.array(points,dtype=np.int).reshape(-1,2)
     if len(limits)==2:
         ml=mt=0
         mr,mb=limits
