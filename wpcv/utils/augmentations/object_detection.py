@@ -4,8 +4,8 @@ import numbers
 import cv2
 from PIL import Image
 import wpcv
-from wpcv.utils.transforms import pil as IM
-from wpcv.utils.transforms import points as PT
+from wpcv.utils.transforms import pil as IMG
+from wpcv.utils.transforms import points as PNT
 from wpcv.utils.augmentations.base import Compose, Zip,RandomMultiChoice
 import wpcv.utils.augmentations.base as BT
 
@@ -54,22 +54,37 @@ class Scale(object):
 
     def __call__(self, img, points):
         scaleX, scaleY = self.scaleX, self.scaleY
-        img = IM.scale(img, (scaleX, scaleY))
-        points = PT.scale(points, (scaleX, scaleY))
+        img = IMG.scale(img, (scaleX, scaleY))
+        points = PNT.scale(points, (scaleX, scaleY))
         return img, points
 
 
 class Resize(object):
-    def __init__(self, size):
+    def __init__(self, size , keep_ratio=False, fillcolor='black'):
         self.size = size
+        self.keep_ratio=keep_ratio
+        self.fillcolor=fillcolor
 
     def __call__(self, img, points):
         w, h = img.size
-        nw, nh = self.size
-        scaleX, scaleY = nw / w, nh / h
-        img = IM.scale(img, (scaleX, scaleY))
-        points = PT.scale(points, (scaleX, scaleY))
+        tw, th = self.size
+        if not self.keep_ratio:
+            scaleX, scaleY = tw / w, th / h
+            img = IMG.resize(img, self.size)
+            points = PNT.scale(points, (scaleX, scaleY))
+        else:
+            img=IMG.resize_keep_ratio(img,self.size,fillcolor=self.fillcolor)
+            rx=w/tw
+            ry=h/th
+            r=max(rx,ry)
+            nw=w/r
+            nh=h/r
+            dw=(tw-nw)//2
+            dh=(th-nh)//2
+            points=PNT.scale(points,1/r)
+            points=PNT.translate(points,(dw,dh))
         return img, points
+
 
 
 class RandomHorizontalFlip(object):
@@ -79,8 +94,8 @@ class RandomHorizontalFlip(object):
     def __call__(self, img, points):
         imw, imh = img.size
         if random.random() < self.p:
-            img = IM.hflip(img)
-            points = [PT.hflip(pnts, imw) for pnts in points]
+            img = IMG.hflip(img)
+            points = [PNT.hflip(pnts, imw) for pnts in points]
         return img, points
 
     def __repr__(self):
@@ -94,8 +109,8 @@ class RandomVerticalFlip(object):
     def __call__(self, img, points):
         imw, imh = img.size
         if random.random() < self.p:
-            img = IM.vflip(img)
-            points = [PT.vflip(pnts, imh) for pnts in points]
+            img = IMG.vflip(img)
+            points = [PNT.vflip(pnts, imh) for pnts in points]
         return img, points
 
     def __repr__(self):
@@ -110,7 +125,7 @@ class RandomTranslate(object):
         self.max_offset=max_offset
         self.fillcolor=fillcolor
     def __call__(self, img,points):
-        rang=PT.get_translate_range(points,img.size)
+        rang=PNT.get_translate_range(points,img.size)
         if self.max_offset:
             def limit_box(box, limits=None):
                 if limits is None: return box
@@ -134,8 +149,8 @@ class RandomTranslate(object):
                 return img,points
         ofx=random.randint(rang[0],rang[2])
         ofy=random.randint(rang[1],rang[3])
-        img=IM.translate(img,offset=(ofx,ofy),fillcolor=self.fillcolor)
-        points=[PT.translate(pnts,(ofx,ofy)) for pnts in points]
+        img=IMG.translate(img,offset=(ofx,ofy),fillcolor=self.fillcolor)
+        points=[PNT.translate(pnts,(ofx,ofy)) for pnts in points]
         return img,points
 
 class RandomRotate(object):
@@ -145,8 +160,8 @@ class RandomRotate(object):
     def __call__(self,img,points):
         degree=random.random()*(self.degree[1]-self.degree[0])+self.degree[0]
         w, h = img.size
-        img=IM.rotate(img,degree,expand=self.expand)
-        points=[PT.rotate(pnts,degree,(w//2,h//2),img_size=(w,h),expand=self.expand) for pnts in points]
+        img=IMG.rotate(img,degree,expand=self.expand)
+        points=[PNT.rotate(pnts,degree,(w//2,h//2),img_size=(w,h),expand=self.expand) for pnts in points]
         return img,points
 
 class RandomShearX(object):
@@ -155,8 +170,8 @@ class RandomShearX(object):
     def __call__(self,img,points):
         degree = random.random() * (self.degree[1] - self.degree[0]) + self.degree[0]
         w, h = img.size
-        img = IM.shear_x(img, degree)
-        points = [PT.shear_x(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
+        img = IMG.shear_x(img, degree)
+        points = [PNT.shear_x(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
         return img, points
 class RandomShearY(object):
     def __init__(self,degree):
@@ -164,8 +179,8 @@ class RandomShearY(object):
     def __call__(self,img,points):
         degree = random.random() * (self.degree[1] - self.degree[0]) + self.degree[0]
         w, h = img.size
-        img = IM.shear_y(img, degree)
-        points = [PT.shear_y(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
+        img = IMG.shear_y(img, degree)
+        points = [PNT.shear_y(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
         return img, points
 class RandomShear(object):
     def __init__(self,xdegree,ydegree=None):
@@ -180,13 +195,13 @@ class RandomShear(object):
         if self.xdegree:
             degree = random.random() * (self.xdegree[1] - self.xdegree[0]) + self.xdegree[0]
             w, h = img.size
-            img = IM.shear_x(img, degree)
-            points = [PT.shear_x(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
+            img = IMG.shear_x(img, degree)
+            points = [PNT.shear_x(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
         if self.ydegree:
             degree = random.random() * (self.ydegree[1] - self.ydegree[0]) + self.ydegree[0]
             w, h = img.size
-            img = IM.shear_y(img, degree)
-            points = [PT.shear_y(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
+            img = IMG.shear_y(img, degree)
+            points = [PNT.shear_y(pnts, degree, img_size=(w, h), expand=True) for pnts in points]
         return img, points
 
 class RandomAffine(object):
@@ -322,25 +337,40 @@ def demo():
         RandomTranslate(max_offset=[100,100]),
         RandomHorizontalFlip(),
         RandomVerticalFlip(),
+        Resize((512,512),keep_ratio=True,fillcolor='green'),
     ])
-    img = Image.open('/home/ars/图片/2019011816055827.jpg')
+    img = Image.open('/home/ars/图片/2.jpeg').convert('RGB')
 
-    points=[[
-          255.7142857142857,
-          243.1428571428571
+    points=[
+        [
+          200.6045627376426,
+          63.30798479087453
         ],
         [
-          305.7142857142857,
-          243.1428571428571
+          172.0874524714829,
+          81.36882129277566
         ],
         [
-          310.0,
-          306.4761904761905
+          168.2851711026616,
+          96.38783269961978
         ],
         [
-          254.28571428571428,
-          305.04761904761904
-        ]]
+          183.11406844106466,
+          132.8897338403042
+        ],
+        [
+          220.5665399239544,
+          132.319391634981
+        ],
+        [
+          237.86692015209127,
+          89.16349809885932
+        ],
+        [
+          230.45247148288973,
+          73.76425855513308
+        ]
+      ]
     img, points = transform(img, [points])
     # print(points)
     img=wpcv.draw_polygon(img,points[0],width=3)

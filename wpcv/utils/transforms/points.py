@@ -27,6 +27,9 @@ def vflip(points,height):
 def translate(points,offset):
     points=np.array(points)+np.array(offset)
     return points
+def shift(points,offset):
+    points=np.array(points)+np.array(offset)
+    return points
 def get_translate_range(points,limits):
     points=np.array(points,dtype=np.int).reshape(-1,2)
     if len(limits)==2:

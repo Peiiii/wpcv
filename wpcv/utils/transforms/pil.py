@@ -1,10 +1,13 @@
-from PIL import Image,ImageChops,ImageFilter,ImageOps,ImageEnhance
+from PIL import Image, ImageChops, ImageFilter, ImageOps, ImageEnhance
 import numpy as np
-import numbers,math
+import numbers, math
+
 
 # Color Transforms
 def _is_pil_image(img):
     return isinstance(img, Image.Image)
+
+
 def rgb_to_hsv(rgb):
     import numpy as np
     # Translated from source of colorsys.rgb_to_hsv
@@ -84,9 +87,11 @@ def hsv_to_rgb(hsv):
 #     return img
 
 
-def adjust_sharpness(img,factor):
-    img=ImageEnhance.Sharpness(img).enhance(factor)
+def adjust_sharpness(img, factor):
+    img = ImageEnhance.Sharpness(img).enhance(factor)
     return img
+
+
 def adjust_hsv(img, h_delta=None, s_factor=None, v_factor=None):
     import numpy as np
     '''hue:0~360,s:0~1,v:0~255'''
@@ -108,6 +113,8 @@ def adjust_hsv(img, h_delta=None, s_factor=None, v_factor=None):
         rgb = hsv_to_rgb(hsv)
     img = Image.fromarray(rgb.astype(np.uint8))
     return img
+
+
 def adjust_brightness(img, brightness_factor):
     """Adjust brightness of an Image.
 
@@ -169,7 +176,6 @@ def adjust_saturation(img, saturation_factor):
 
 
 def adjust_hue(img, hue_factor):
-
     """Adjust hue of an image.
 
     The image hue is adjusted by converting the image to HSV and
@@ -194,7 +200,7 @@ def adjust_hue(img, hue_factor):
     Returns:
         PIL Image: Hue adjusted image.
     """
-    if not(-0.5 <= hue_factor <= 0.5):
+    if not (-0.5 <= hue_factor <= 0.5):
         raise ValueError('hue_factor is not in [-0.5, 0.5].'.format(hue_factor))
 
     if not _is_pil_image(img):
@@ -280,56 +286,156 @@ def to_grayscale(img, num_output_channels=1):
     return img
 
 
-
-
 # Geometrical Transforms
 
-def scale(img,scale):
-    if isinstance(scale,(tuple,list)):
-        scaleX,scaleY=scale
+def scale(img, scale):
+    if isinstance(scale, (tuple, list)):
+        scaleX, scaleY = scale
     else:
-        scaleX=scaleY=scale
-    w,h=img.size
-    nw=int(w*scaleX)
-    nh=int(h*scaleY)
-    img=img.resize((nw,nh))
+        scaleX = scaleY = scale
+    w, h = img.size
+    nw = int(w * scaleX)
+    nh = int(h * scaleY)
+    img = img.resize((nw, nh))
     return img
-def resize(img,size):
-    img=img.resize(size)
+
+
+def resize(img, size, keep_ratio=None, fillcolor='black'):
+    img = img.resize(size)
     return img
-def shift(img,offset,fillcolor=(0,0,0)):
-    fill=fillcolor
-    w,h=img.size
-    ofx,ofy=offset
-    img = ImageChops.offset(img,ofx,ofy)
+
+
+# def
+def shift(img, offset, fillcolor=(0, 0, 0)):
+    fill = fillcolor
+    w, h = img.size
+    ofx, ofy = offset
+    img = ImageChops.offset(img, ofx, ofy)
     if fill is None:
         return img
     else:
-        if ofx<0:
-            img.paste(fill,(ofx%w,0,w,h))
+        if ofx < 0:
+            img.paste(fill, (ofx % w, 0, w, h))
         else:
-            img.paste(fill,(0,0,ofx,h))
-        if ofy<0:
-            img.paste(fill,(0,ofy%h,w,h))
+            img.paste(fill, (0, 0, ofx, h))
+        if ofy < 0:
+            img.paste(fill, (0, ofy % h, w, h))
         else:
-            img.paste(fill,(0,0,w,ofy))
+            img.paste(fill, (0, 0, w, ofy))
     return img
-def translate(img,offset,fillcolor=(0,0,0)):
-    return shift(img,offset,fillcolor)
+
+
+def translate(img, offset, fillcolor=(0, 0, 0)):
+    return shift(img, offset, fillcolor)
+
+
 def hflip(img):
-    img=img.transpose(Image.FLIP_LEFT_RIGHT)
+    img = img.transpose(Image.FLIP_LEFT_RIGHT)
     return img
+
+
 def vflip(img):
-    img=img.transpose(Image.FLIP_TOP_BOTTOM)
+    img = img.transpose(Image.FLIP_TOP_BOTTOM)
     return img
 
 
-def pad(img,dst_size,method=Image.BICUBIC, color=None):
-    img=ImageOps.pad(img,dst_size,method=method,color=color)
+def resize_to_fixed_height(img, height):
+    w, h = img.size
+    r = h / height
+    nw = int(w / r)
+    nh = int(h / r)
+    img = img.resize((nw, nh))
     return img
-def crop(img,box):
-    img=img.crop(box)
+
+
+def resize_to_fixed_width(img, width):
+    w, h = img.size
+    r = w / width
+    nw = int(w / r)
+    nh = int(h / r)
+    img = img.resize((nw, nh))
     return img
+
+
+def resize_by_scale(img, scale):
+    w, h = img.size
+    if isinstance(scale, (list, tuple)):
+        rx, ry = scale
+    else:
+        rx = ry = scale
+    nw = int(w * rx)
+    nh = int(h * ry)
+    img = img.resize((nw, nh))
+    return img
+
+
+def limit_size(img, limits):
+    w, h = img.size
+    mw, mh = limits
+    rw = w / mw
+    rh = h / mh
+    r = max(rw, rh)
+    if r <= 1:
+        return img
+    nw = int(w / r)
+    nh = int(h / r)
+    img = img.resize((nw, nh))
+    return img
+
+
+def fit_longside(img, limits):
+    w, h = img.size
+    mw, mh = limits
+    rw = w / mw
+    rh = h / mh
+    r = max(rw, rh)
+    nw = int(w / r)
+    nh = int(h / r)
+    img = img.resize((nw, nh))
+    return img
+
+
+def resize_keep_ratio(img, dst_size, method=Image.BICUBIC, fillcolor='black', centering=(0.5, 0.5)):
+    img = ImageOps.pad(img, dst_size, method=method, color=fillcolor, centering=centering)
+    return img
+
+
+def pad(img, pad_ratio=None, pad_size=None, fillcolor='black'):
+    w, h = img.size
+    if pad_ratio is not None:
+        if isinstance(pad_ratio, (tuple, list)):
+            if len(pad_ratio) == 2:
+                pad_l = pad_r = int(w * pad_ratio[0])
+                pad_t = pad_b = int(h * pad_ratio[1])
+            else:
+                assert len(pad_ratio) == 4
+                pad_l = int(w * pad_ratio[0])
+                pad_t = int(h * pad_ratio[1])
+                pad_r = int(w * pad_ratio[2])
+                pad_b = int(h * pad_ratio[3])
+        else:
+            pad_l = pad_r = int(w * pad_ratio)
+            pad_t = pad_b = int(h * pad_ratio)
+    else:
+        if isinstance(pad_size, (tuple, list)):
+            if len(pad_size) == 2:
+                pad_l = pad_r = pad_size[0]
+                pad_t = pad_b = pad_size[1]
+            else:
+                assert len(pad_size) == 4
+                pad_l, pad_t, pad_r, pad_b = pad_size
+        else:
+            pad_l = pad_t = pad_r = pad_b = pad_size
+    dst_size=(w+pad_l+pad_r,h+pad_t+pad_b)
+    canvas=Image.new(img.mode,dst_size,color=fillcolor)
+    canvas.paste(img,(pad_l,pad_t))
+    return canvas
+
+def crop(img, box):
+    img = img.crop(box)
+    return img
+
+
 def center_crop(img, output_size):
     if isinstance(output_size, numbers.Number):
         output_size = (int(output_size), int(output_size))
@@ -337,48 +443,64 @@ def center_crop(img, output_size):
     th, tw = output_size
     l = int(round((h - th) / 2.))
     t = int(round((w - tw) / 2.))
-    r=l+int(tw)
-    b=t+int(th)
-    return crop(img, [l,t,r,b])
-def crop_quad(img,quad,dst_size):
+    r = l + int(tw)
+    b = t + int(th)
+    return crop(img, [l, t, r, b])
+
+
+def crop_quad(img, quad, dst_size):
     '''quad:[four points clock-wise],size:target size'''
-    assert isinstance(img,Image.Image)
+    assert isinstance(img, Image.Image)
+
     def invert(points):
-        points=[points[0]]+reversed(points[1:])
+        points = [points[0]] + reversed(points[1:])
         return points
-    quad=invert(quad)
-    img=img.transform(dst_size,Image.QUAD,data=quad)
+
+    quad = invert(quad)
+    img = img.transform(dst_size, Image.QUAD, data=quad)
     return img
-def rotate(img,degree,expand=True,fill='black',translate=None):
-    img=img.rotate(degree,expand=expand,fillcolor=fill,translate=translate)
+
+
+def rotate(img, degree, expand=True, fill='black', translate=None):
+    img = img.rotate(degree, expand=expand, fillcolor=fill, translate=translate)
     return img
+
+
 def shear_x(img, degree, **kwargs):
     import math
-    arc=math.radians(degree)
-    factor=math.sin(arc)
-    w,h=img.size
-    ofx=int(h*math.sin(arc))
-    dw=abs(ofx)
-    img=img.transform((w+dw,h), Image.AFFINE, (1, -factor, min(0,ofx), 0, 1, 0), **kwargs)
+    arc = math.radians(degree)
+    factor = math.sin(arc)
+    w, h = img.size
+    ofx = int(h * math.sin(arc))
+    dw = abs(ofx)
+    img = img.transform((w + dw, h), Image.AFFINE, (1, -factor, min(0, ofx), 0, 1, 0), **kwargs)
     return img
+
+
 def shear_y(img, degree, **kwargs):
     import math
-    arc=math.radians(degree)
-    factor=math.sin(arc)
-    w,h=img.size
-    ofy=int(w*math.sin(arc))
-    dh=abs(ofy)
-    img=img.transform((w,h+dh), Image.AFFINE, (1, 0,0, factor, 1, min(0,-ofy)), **kwargs)
+    arc = math.radians(degree)
+    factor = math.sin(arc)
+    w, h = img.size
+    ofy = int(w * math.sin(arc))
+    dh = abs(ofy)
+    img = img.transform((w, h + dh), Image.AFFINE, (1, 0, 0, factor, 1, min(0, -ofy)), **kwargs)
     return img
-def shear_xy(img,degree1,degree2):
-    img=shear_x(img,degree1)
-    img=shear_y(img,degree2)
+
+
+def shear_xy(img, degree1, degree2):
+    img = shear_x(img, degree1)
+    img = shear_y(img, degree2)
     return img
-def shear_yx(img,degree1,degree2):
-    img=shear_x(img,degree1)
-    img=shear_y(img,degree2)
+
+
+def shear_yx(img, degree1, degree2):
+    img = shear_x(img, degree1)
+    img = shear_y(img, degree2)
     return img
-def perspective_transform(img,pnts1,pnts2,dst_size,resample=Image.CUBIC,fillcolor='black'):
+
+
+def perspective_transform(img, pnts1, pnts2, dst_size, resample=Image.CUBIC, fillcolor='black'):
     import numpy
     def get_coeffs(pa, pb):
         matrix = []
@@ -391,79 +513,115 @@ def perspective_transform(img,pnts1,pnts2,dst_size,resample=Image.CUBIC,fillcolo
 
         res = numpy.dot(numpy.linalg.inv(A.T * A) * A.T, B)
         return numpy.array(res).reshape(8)
-    assert isinstance(img,Image.Image)
-    coeffs=get_coeffs(pnts2,pnts1)
-    img=img.transform(dst_size,Image.PERSPECTIVE,coeffs,resample=resample,fillcolor=fillcolor)
+
+    assert isinstance(img, Image.Image)
+    coeffs = get_coeffs(pnts2, pnts1)
+    img = img.transform(dst_size, Image.PERSPECTIVE, coeffs, resample=resample, fillcolor=fillcolor)
     return img
 
 
 # Image Filtering
 
-def gaussian_blur(img,radius=2):
-    img=img.filter(ImageFilter.GaussianBlur(radius=radius))
+def gaussian_blur(img, radius=2):
+    img = img.filter(ImageFilter.GaussianBlur(radius=radius))
     return img
-def box_blur(img,radius=3):
-    img=img.filter(ImageFilter.BoxBlur(radius=radius))
+
+
+def box_blur(img, radius=3):
+    img = img.filter(ImageFilter.BoxBlur(radius=radius))
     return img
+
+
 def blur(img):
-    img=img.filter(ImageFilter.BLUR)
+    img = img.filter(ImageFilter.BLUR)
     return img
+
+
 def contour(img):
-    img=img.filter(ImageFilter.CONTOUR)
+    img = img.filter(ImageFilter.CONTOUR)
     return img
+
+
 def edge_enhance(img):
-    img=img.filter(ImageFilter.EDGE_ENHANCE)
+    img = img.filter(ImageFilter.EDGE_ENHANCE)
     return img
+
+
 def edge_enhance_more(img):
-    img=img.filter(ImageFilter.EDGE_ENHANCE_MORE)
+    img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
     return img
+
+
 def emboss(img):
-    img=img.filter(ImageFilter.EMBOSS)
+    img = img.filter(ImageFilter.EMBOSS)
     return img
+
+
 def edge(img):
-    img=img.filter(ImageFilter.FIND_EDGES)
+    img = img.filter(ImageFilter.FIND_EDGES)
     return img
+
+
 def shapen(img):
-    img=img.filter(ImageFilter.SHARPEN)
+    img = img.filter(ImageFilter.SHARPEN)
     return img
-def unsharp(img,radius=5,percent=150,threshold=3):
-    img=img.filter(ImageFilter.UnsharpMask(radius=radius,percent=percent,threshold=threshold))
+
+
+def unsharp(img, radius=5, percent=150, threshold=3):
+    img = img.filter(ImageFilter.UnsharpMask(radius=radius, percent=percent, threshold=threshold))
     return img
+
+
 def smooth(img):
-    img=img.filter(ImageFilter.SMOOTH_MORE)
+    img = img.filter(ImageFilter.SMOOTH_MORE)
     return img
-def median_filter(img,size=5):
+
+
+def median_filter(img, size=5):
     img = img.filter(ImageFilter.MedianFilter(size=size))
     return img
-def model_filter(img,size=5):
-    img=img.filter(ImageFilter.ModeFilter(size=size))
+
+
+def model_filter(img, size=5):
+    img = img.filter(ImageFilter.ModeFilter(size=size))
     return img
-def rank_filter(img,size=5,rank=3):
-    img = img.filter(ImageFilter.RankFilter(size=size,rank=rank))
+
+
+def rank_filter(img, size=5, rank=3):
+    img = img.filter(ImageFilter.RankFilter(size=size, rank=rank))
     return img
-def max_filter(img,size=5):
+
+
+def max_filter(img, size=5):
     img = img.filter(ImageFilter.MaxFilter(size=size))
     return img
-def min_filter(img,size=5):
+
+
+def min_filter(img, size=5):
     img = img.filter(ImageFilter.MinFilter(size=size))
     return img
-def equalize(img,mask=None):
-    img=ImageOps.equalize(img,mask=mask)
+
+
+def equalize(img, mask=None):
+    img = ImageOps.equalize(img, mask=mask)
     return img
+
 
 # Image Noise
 # 高斯模糊，运动模糊，高斯白噪声，椒盐噪声，poison，
 
-def gaussian_noise(img,var=0.1):
+def gaussian_noise(img, var=0.1):
     import numpy as np
-    img=np.array(img)
+    img = np.array(img)
     mean = 0
     sigma = var ** 0.5
-    gauss = np.random.normal(mean, sigma,img.shape)
+    gauss = np.random.normal(mean, sigma, img.shape)
     img = img + gauss
     img = Image.fromarray(img.astype(np.uint8))
     return img
-def sp_noise(img,amount=0.004):
+
+
+def sp_noise(img, amount=0.004):
     import numpy as np
     img = np.array(img)
     s_vs_p = 0.5
@@ -480,9 +638,11 @@ def sp_noise(img,amount=0.004):
     coords = [np.random.randint(0, i - 1, int(num_pepper))
               for i in img.shape]
     out[coords] = 0
-    img=out
+    img = out
     img = Image.fromarray(img.astype(np.uint8))
     return img
+
+
 def poisson_noise(img):
     import numpy as np
     img = np.array(img)
@@ -491,22 +651,26 @@ def poisson_noise(img):
     img = np.random.poisson(img * vals) / float(vals)
     img = Image.fromarray(img.astype(np.uint8))
     return img
+
+
 def speckle_noise(img):
     import numpy as np
     img = np.array(img)
     gauss = np.random.randn(*img.shape)
     img = img + img * gauss
-    img=Image.fromarray(img.astype(np.uint8))
+    img = Image.fromarray(img.astype(np.uint8))
     return img
 
 
 def _demo():
     from wpcv import ImageSaver
-    saver=ImageSaver('/home/ars/sda5/data/tmp/0603/results',remake_dir=True)
-    f='/home/ars/图片/2019011816055827.jpg'
+    saver = ImageSaver('/home/ars/sda5/data/tmp/0603/results', remake_dir=True)
+    f = '/home/ars/图片/0.jpeg'
     # f='/home/ars/图片/2020-06-03 08-44-16 的屏幕截图.png'
-    img=Image.open(f).convert('RGB')
-    assert isinstance(img,Image.Image)
+    img = Image.open(f).convert('RGB')
+    w, h = img.size
+    print(img.size)
+    assert isinstance(img, Image.Image)
     # x=Image.Image()
     # x.transform()
     # img=shift(img,(-50,-50),fill=None)
@@ -518,51 +682,55 @@ def _demo():
     # img=shear_xy(img,-30,30)
     # img=shear_x_rotate(img,-30,30)
     # img=img.filter(ImageFilter.BoxBlur(2))
-    im=img.filter(ImageFilter.CONTOUR)
-    saver.save(im)
-    im=img.filter(ImageFilter.DETAIL)
-    saver.save(im)
-    im=img.filter(ImageFilter.EDGE_ENHANCE)
-    saver.save(im)
-    im=img.filter(ImageFilter.EDGE_ENHANCE_MORE)
-    saver.save(im)
-    im=img.filter(ImageFilter.EMBOSS)
-    saver.save(im)
-    im=img.filter(ImageFilter.FIND_EDGES)
-    saver.save(im)
-    im=img.filter(ImageFilter.SHARPEN)
-    saver.save(im)
-    im=img.filter(ImageFilter.SMOOTH_MORE)
-    saver.save(im)
-    im=img.filter(ImageFilter.ModeFilter(size=5))
-    saver.save(im)
-    im=img.filter(ImageFilter.RankFilter(size=11,rank=3))
-    saver.save(im)
-    im=img.filter(ImageFilter.MedianFilter(size=11))
-    saver.save(im)
-    im=img.filter(ImageFilter.MinFilter(size=11))
-    saver.save(im)
-    im=img.filter(ImageFilter.UnsharpMask(11))
-    saver.save(im)
-    im=equalize(img)
-    saver.save(im)
-    im=ImageEnhance.Color(img).enhance(0.5)
-    saver.save(im)
-    # im=ImageEnhance.Brightness(img).enhance(0.2)
+    # im = img.filter(ImageFilter.CONTOUR)
     # saver.save(im)
-    im=gaussian_noise(img)
-    saver.save(im)
-    im=sp_noise(img)
-    saver.save(im)
-    im=poisson_noise(img)
-    saver.save(im)
-    im=speckle_noise(img)
-    saver.save(im)
+    # im = img.filter(ImageFilter.DETAIL)
+    # saver.save(im)
+    # im = img.filter(ImageFilter.EDGE_ENHANCE)
+    # saver.save(im)
+    # im = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
+    # saver.save(im)
+    # im = img.filter(ImageFilter.EMBOSS)
+    # saver.save(im)
+    # im = img.filter(ImageFilter.FIND_EDGES)
+    # saver.save(im)
+    # im = img.filter(ImageFilter.SHARPEN)
+    # saver.save(im)
+    # im = img.filter(ImageFilter.SMOOTH_MORE)
+    # saver.save(im)
+    # im = img.filter(ImageFilter.ModeFilter(size=5))
+    # saver.save(im)
+    # im = img.filter(ImageFilter.RankFilter(size=11, rank=3))
+    # saver.save(im)
+    # im = img.filter(ImageFilter.MedianFilter(size=11))
+    # saver.save(im)
+    # im = img.filter(ImageFilter.MinFilter(size=11))
+    # saver.save(im)
+    # im = img.filter(ImageFilter.UnsharpMask(11))
+    # saver.save(im)
+    # im = equalize(img)
+    # saver.save(im)
+    # im = ImageEnhance.Color(img).enhance(0.5)
+    # saver.save(im)
+    # # im=ImageEnhance.Brightness(img).enhance(0.2)
+    # # saver.save(im)
+    # im = gaussian_noise(img)
+    # saver.save(im)
+    # im = sp_noise(img)
+    # saver.save(im)
+    # im = poisson_noise(img)
+    # saver.save(im)
+    # im = speckle_noise(img)
+    # saver.save(im)
+    #
+    # im = rotate(img, 30, expand=False)
+    # saver.save(im)
 
-    im=rotate(img,30,expand=False)
-    saver.save(im)
-
+    im=pad(img,(0.1,0.4),fillcolor='green')
+    # im = resize_keep_ratio(img, (500, 100))
+    print(im.size)
     im.show()
+
 
 if __name__ == '__main__':
     _demo()
