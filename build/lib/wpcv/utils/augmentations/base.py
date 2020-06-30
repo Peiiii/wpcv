@@ -106,6 +106,10 @@ class Zip(object):
         return tuple(res)
 
 class RandomMultiChoice(object):
+    '''
+    for each choice , choose at a given probability,
+    which means, multiple of them can be chosen simultaneously
+    '''
     def __init__(self,transforms,probs=None):
         self.transforms=transforms
         if not probs:
@@ -392,8 +396,37 @@ class RandomTransforms(object):
         format_string += '\n)'
         return format_string
 
+# class RandomApply(RandomTransforms):
+#     """Apply randomly a list of transformations with a given probability
+#
+#     Args:
+#         transforms (list or tuple): list of transformations
+#         p (float): probability
+#     """
+#
+#     def __init__(self, transforms, p=0.5):
+#         if not isinstance(transforms,(list,tuple,set)):
+#             transforms=[transforms]
+#         super(RandomApply, self).__init__(transforms)
+#         self.p = p
+#
+#     def __call__(self, img):
+#         if self.p < random.random():
+#             return img
+#         for t in self.transforms:
+#             img = t(img)
+#         return img
+#
+#     def __repr__(self):
+#         format_string = self.__class__.__name__ + '('
+#         format_string += '\n    p={}'.format(self.p)
+#         for t in self.transforms:
+#             format_string += '\n'
+#             format_string += '    {0}'.format(t)
+#         format_string += '\n)'
+#         return format_string
 
-class RandomApply(RandomTransforms):
+class RandomApply(object):
     """Apply randomly a list of transformations with a given probability
 
     Args:
@@ -401,25 +434,17 @@ class RandomApply(RandomTransforms):
         p (float): probability
     """
 
-    def __init__(self, transforms, p=0.5):
-        super(RandomApply, self).__init__(transforms)
+    def __init__(self, transform, p=0.5,*args,**kwargs):
+        self.transform=transform
         self.p = p
-
+        self.args=args
+        self.kwargs=kwargs
     def __call__(self, img):
         if self.p < random.random():
             return img
-        for t in self.transforms:
-            img = t(img)
+        img=self.transform(img,*self.args,**self.kwargs)
         return img
 
-    def __repr__(self):
-        format_string = self.__class__.__name__ + '('
-        format_string += '\n    p={}'.format(self.p)
-        for t in self.transforms:
-            format_string += '\n'
-            format_string += '    {0}'.format(t)
-        format_string += '\n)'
-        return format_string
 
 
 class RandomOrder(RandomTransforms):

@@ -1,6 +1,7 @@
 import numpy as np
 import math
 
+
 def bounding_rect(points):
     points=np.array(points)
     l=np.min(points[:,0])
@@ -25,6 +26,9 @@ def vflip(points,height):
     points[:,1]=height-points[:,1]
     return points
 def translate(points,offset):
+    points=np.array(points)+np.array(offset)
+    return points
+def shift(points,offset):
     points=np.array(points)+np.array(offset)
     return points
 def get_translate_range(points,limits):

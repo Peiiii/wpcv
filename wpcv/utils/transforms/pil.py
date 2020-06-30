@@ -461,30 +461,31 @@ def crop_quad(img, quad, dst_size):
     return img
 
 
-def rotate(img, degree, expand=True, fill='black', translate=None):
-    img = img.rotate(degree, expand=expand, fillcolor=fill, translate=translate)
+def rotate(img, degree, expand=True, fillcolor='black', translate=None):
+    img = img.rotate(degree, expand=expand, fillcolor=fillcolor, translate=translate)
     return img
 
 
-def shear_x(img, degree, **kwargs):
+def shear_x(img, degree,fillcolor='black', **kwargs):
+    assert isinstance(img,Image.Image)
     import math
     arc = math.radians(degree)
     factor = math.sin(arc)
     w, h = img.size
     ofx = int(h * math.sin(arc))
     dw = abs(ofx)
-    img = img.transform((w + dw, h), Image.AFFINE, (1, -factor, min(0, ofx), 0, 1, 0), **kwargs)
+    img = img.transform((w + dw, h), Image.AFFINE, (1, -factor, min(0, ofx), 0, 1, 0),fill=fillcolor, **kwargs)
     return img
 
 
-def shear_y(img, degree, **kwargs):
+def shear_y(img, degree,fillcolor='black', **kwargs):
     import math
     arc = math.radians(degree)
     factor = math.sin(arc)
     w, h = img.size
     ofy = int(w * math.sin(arc))
     dh = abs(ofy)
-    img = img.transform((w, h + dh), Image.AFFINE, (1, 0, 0, factor, 1, min(0, -ofy)), **kwargs)
+    img = img.transform((w, h + dh), Image.AFFINE, (1, 0, 0, factor, 1, min(0, -ofy)),fill=fillcolor, **kwargs)
     return img
 
 

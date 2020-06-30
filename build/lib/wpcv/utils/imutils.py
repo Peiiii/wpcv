@@ -62,13 +62,13 @@ def concat_image_horizontal(imgs,h='max',mode='RGB'):
     w=sum([im.size[0] for im in imgs])
     canvas=Image.new(mode=mode,size=(w,h),color=0)
     hook=[0,0]
-    print(w,h)
+    # print(w,h)
     for img in imgs:
-        print(hook,img.size)
+        # print(hook,img.size)
         canvas.paste(img,hook.copy())
-        print(hook)
+        # print(hook)
         hook[0]+=img.size[0]
-        print(hook)
+        # print(hook)
     return canvas
 
 def concat_image_vertical(imgs,w='max',mode='RGB'):
