@@ -1,0 +1,35 @@
+Epoch: 0	Loss: 3.2161	Accuracy: 0.6381
+Epoch: 1	Loss: 0.9636	Accuracy: 0.7556
+****************************************************************************************************
+Save model to weights/model_1_0.7115.pkl ,Val Loss :4.3296	 Val Accuracy: 0.7115
+Epoch: 2	Loss: 0.7048	Accuracy: 0.7841
+Epoch: 3	Loss: 0.4230	Accuracy: 0.8095
+****************************************************************************************************
+Save model to weights/model_3_0.8654.pkl ,Val Loss :0.4102	 Val Accuracy: 0.8654
+Epoch: 4	Loss: 0.3613	Accuracy: 0.8794
+****************************************************************************************************
+Save model to weights/model_4_0.9038.pkl ,Val Loss :0.3026	 Val Accuracy: 0.9038
+Epoch: 5	Loss: 0.2971	Accuracy: 0.8730
+****************************************************************************************************
+Save model to weights/model_5_0.9231.pkl ,Val Loss :0.3526	 Val Accuracy: 0.9231
+Epoch: 6	Loss: 0.2245	Accuracy: 0.9016
+****************************************************************************************************
+Save model to weights/model_6_0.9615.pkl ,Val Loss :0.1094	 Val Accuracy: 0.9615
+Epoch: 7	Loss: 0.2268	Accuracy: 0.9143
+****************************************************************************************************
+Save model to weights/model_7_0.9808.pkl ,Val Loss :0.0693	 Val Accuracy: 0.9808
+Epoch: 8	Loss: 0.2554	Accuracy: 0.9048
+Epoch: 9	Loss: 0.1838	Accuracy: 0.9429
+Epoch: 10	Loss: 0.2100	Accuracy: 0.9238
+Epoch: 11	Loss: 0.1716	Accuracy: 0.9270
+Epoch: 12	Loss: 0.2383	Accuracy: 0.9175
+****************************************************************************************************
+Save model to weights/model_12_1.0000.pkl ,Val Loss :0.0463	 Val Accuracy: 1.0000
+Epoch: 13	Loss: 0.1570	Accuracy: 0.9460
+Epoch: 14	Loss: 0.1700	Accuracy: 0.9397
+Epoch: 15	Loss: 0.1753	Accuracy: 0.9429
+Epoch: 16	Loss: 0.1363	Accuracy: 0.9683
+Epoch: 17	Loss: 0.2006	Accuracy: 0.9397
+Epoch: 18	Loss: 0.2320	Accuracy: 0.9333
+Epoch: 19	Loss: 0.1876	Accuracy: 0.9302
+Epoch: 20	Loss: 0.2749	Accuracy: 0.9016

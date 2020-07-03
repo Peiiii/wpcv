@@ -424,7 +424,7 @@ def demo():
 	])
 	img = Image.open('/home/ars/图片/2.jpeg').convert('RGB')
 
-	points = [
+	polygon = [
 		[
 			200.6045627376426,
 			63.30798479087453
@@ -454,9 +454,9 @@ def demo():
 			73.76425855513308
 		]
 	]
-	img, points = transform(img, [points])
+	img, polygons = transform(img, [polygon])
 	# print(points)
-	img = wpcv.draw_polygon(img, points[0], width=3)
+	img = wpcv.draw_polygon(img, polygons[0], width=3)
 	img.show()
 	# print(img.size, box)
 
