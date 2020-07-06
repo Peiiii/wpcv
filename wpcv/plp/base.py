@@ -49,6 +49,8 @@ class Params(PointDict):
 				                'MultiStepLR': torch.optim.lr_scheduler.MultiStepLR, }
 				lr_sch_type = lr_sch_types[lr_sch_type]
 			self.lr_scheduler = lr_sch_type(self.optimizer, **self.lr_scheduler)
+		elif self.lr_scheduler is None:
+			self.lr_scheduler=torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer)
 		assert self.criterion
 		self.train_data_loader = self.train_data_loader or self.dataloaders['train']
 		if not self.val_data_loader and self.dataloaders:
@@ -530,6 +532,8 @@ class Trainer:
 			else:
 				raise Exception('Name does not start with "on" : %s' % (func.__name__))
 		return self
+	def bind_it(self,event):
+		return self.event_manager.bind_this(event)
 
 	def auto_bind(self):
 		logging.info('Finding potential listeners(functions with names start with "on_")...')
@@ -635,6 +639,7 @@ class Trainer:
 		dic.update(
 			# params=params,
 			# settings=settings,
+			trainer=self,
 			state=state,
 			flags=flags,
 		)
@@ -647,6 +652,19 @@ class Trainer:
 		return self.argument_space.retrieve_arguments(args, strict=strict)
 
 	# def train(self,**kwargs):
+	def auto_feed_params(self,func):
+		arg_dict=get_arg_dict(func)
+		@functools.wraps(func)
+		def wrapper(*args,**kwargs):
+			params = {}
+			for k, v_default in arg_dict:
+				v = self.argument_space.get(k, None)
+				if v is None:
+					v = v_default if not v_default is not inspect._empty else None
+				params[k] = v
+			res = func(*args,**params,**kwargs)
+			return res
+		return wrapper
 	def train(self, model=None, device=None, train_data_loader=None, val_data_loader=None, criterion=None,
 	          optimizer=None, lr_scheduler=None, start_global_step=None, start_epoch=None, num_epochs=None):
 		'''
@@ -661,7 +679,10 @@ class Trainer:
 			start_epoch=start_epoch, num_epochs=num_epochs,
 		)
 		return self.emit('train', **kwargs)
-
+	def lr_scheduler_step(self):
+		self.emit('lr_scheduler_step')
+	def on_lr_scheduler_step(self,lr_scheduler,epoch,trainState):
+		lr_scheduler.step(trainState.epoch_loss,epoch)
 	def on_train(self, model, device, train_data_loader, val_data_loader, criterion, optimizer, lr_scheduler,
 	             start_global_step, start_epoch, num_epochs):
 		'''
@@ -701,7 +722,7 @@ class Trainer:
 			self.epoch_train_summary(state)
 			self.epoch_summary(state)
 			if lr_scheduler:
-				lr_scheduler.step()
+				self.lr_scheduler_step()
 			if flags.stop_trainning:
 				break
 		self.emit('train_end')

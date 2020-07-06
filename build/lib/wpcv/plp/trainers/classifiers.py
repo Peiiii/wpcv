@@ -7,7 +7,7 @@ class Classifier(plp.Trainer):
 		pass
 
 
-def resnet(data_dir,name='resnet18',pretrained=True,num_classes='auto',input_size=(224,224),batch_size=8,num_epoch=200,patience=20,shuffle=True):
+def resnet(data_dir=None,name='resnet18',pretrained=True,num_classes='auto',input_size=(224,224),batch_size=8,num_epoch=200,patience=20,shuffle=True):
 	trainer = plp.ClassifierTrainer()
 	if num_classes=='auto':
 		num_classes=len(os.listdir(data_dir+'/train'))
