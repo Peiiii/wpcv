@@ -11,3 +11,7 @@
 ./tests/*
 .code/*
 .vscode/*
+train_scripts/**/*
+scripts/**/*
+dist/**/*
+build/**/*

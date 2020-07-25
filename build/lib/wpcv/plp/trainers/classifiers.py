@@ -2,9 +2,6 @@
 from wpcv import plp as plp
 import os,glob
 
-class Classifier(plp.Trainer):
-	def __init__(self,data_dir,name='resnet18',pretrained=True,num_classes='auto',input_size=(224,224),batch_size=8,num_epoch=200,patience=20,shuffle=True):
-		pass
 
 
 def resnet(data_dir=None,name='resnet18',pretrained=True,num_classes='auto',input_size=(224,224),batch_size=8,num_epoch=200,patience=20,shuffle=True):

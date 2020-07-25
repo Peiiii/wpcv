@@ -173,11 +173,19 @@ def draw_box(img,box,copy=True,width=5,outline='red',fill=None):
     draw=ImageDraw.Draw(img)
     draw.rectangle((box[:2],box[2:]),width=width,outline=outline,fill=fill)
     return img
-def draw_polygon(img,points,color='blue',width=1):
-    points=[tuple(list(p)) for p in points]
-    draw=ImageDraw.Draw(img)
+
+
+def draw_polygon(img, points, color='blue', width=1, label=None, label_xy=(0, 0), label_color=None):
+    points = [tuple(list(p)) for p in points]
+    draw = ImageDraw.Draw(img)
     points.append(points[0])
-    draw.line(points,fill=color,width=width)
+    draw.line(points, fill=color, width=width)
+    if label:
+        label_color = label_color or color
+        corner = sorted(points, key=lambda p: p[0] - p[1], reverse=True)[0]
+
+        xy = [(x1 + x2, y1 + y2) for (x1, y1), (x2, y2) in [(corner, label_xy)]][0]
+        draw.text(xy, label, fill=label_color)
     return img
 def draw_textboxes(img,textboxes,copy=False,font_size=32):
     if copy:
@@ -275,32 +283,50 @@ def pltimshow(x,*args,**kwargs):
     plt.show()
 ########################ImageSaver###########################
 class ImageSaver:
-    def __init__(self,save_dir=None,remake_dir=False,start_file_index=0):
-        save_dir=save_dir or './tmp_image_save_dir'
+    def __init__(self, save_dir=None, remake_dir=False, start_file_index=0, auto_make_subdir=False):
+        save_dir = save_dir or './tmp_image_save_dir'
         import time
         if os.path.exists(save_dir) and remake_dir:
             shutil.rmtree(save_dir)
             time.sleep(0.01)
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
-        self.save_dir=save_dir
-        self.remake_dir=remake_dir
-        self.file_index=start_file_index
-        self.alive=True
+        self.save_dir = save_dir
+        self.remake_dir = remake_dir
+        self.auto_make_subdir = auto_make_subdir
+        self.file_index = start_file_index
+        self.alive = True
+
     def deactive(self):
-        self.alive=False
+        self.alive = False
+
     def active(self):
-        self.alive=True
-    def save(self,img,name=None):
+        self.alive = True
+
+    def save(self, img, *names):
+        if names:
+            name = os.path.join(*names)
+        else:
+            name=None
         if not self.alive:
             return False
-        name=name or '%s.jpg'%self.file_index
-        name=os.path.join(self.save_dir,name)
+        if name and '%s' in name:
+            name=name%self.file_index
+
+        name = name or '%s.jpg' % self.file_index
+        parent = os.path.dirname(name)
+        if parent:
+            parent_dir = os.path.join(self.save_dir, parent)
+            if self.auto_make_subdir and not os.path.exists(parent_dir):
+                os.makedirs(parent_dir)
+
+        name = os.path.join(self.save_dir, name)
         if isinstance(img, Image.Image):
             img.save(name)
         else:
-            img=np.array(img).astype(np.uint8)
+            img = np.array(img).astype(np.uint8)
             pilimg(img).save(name)
             # cv2.imencode('.jpg', img)[1].tofile(name)
-        self.file_index+=1
+        self.file_index += 1
         return name
+

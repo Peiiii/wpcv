@@ -2,10 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2de4013-8abd-4a11-906e-ca5dc5610a15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/plp/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/plp/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/plp/base_old.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/plp/data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/plp/trainers/classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/plp/trainers/classifiers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/functional.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/functional.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/object_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/object_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/boxutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/boxutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/imutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/imutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/transforms/pil.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/transforms/pil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/wpcv-0.0.2.7-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/wpcv-0.0.2.7.tar.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv.egg-info/PKG-INFO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv.egg-info/SOURCES.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wpcv/plp/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/plp/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/plp/base_old.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/plp/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/plp/data/data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wpcv/plp/trainers/classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/plp/trainers/classifiers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/scripts/trainers/resnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/scripts/trainers/resnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/augmentations/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/functional.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/augmentations/functional.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/object_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/augmentations/object_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/boxutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/boxutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/imutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/imutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/transforms/pil.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/transforms/pil.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +64,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/info/imgs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/wpcv/utils/extra" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -52,9 +76,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/info/imgs" />
-      <recent name="$PROJECT_DIR$/data/imgs" />
+      <recent name="$PROJECT_DIR$/wpcv/utils/extra" />
+      <recent name="$PROJECT_DIR$/scripts/datasets/ocr/milkcarton" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/wpcv/models/quadnet" />
+      <recent name="$PROJECT_DIR$/info/imgs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/wpcv/plp/data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -69,8 +98,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.resnet">
-    <configuration name="model (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.split_image">
+    <configuration name="sample_from_dir" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -78,12 +107,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wpcv/models/resnet_v3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/datasets" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wpcv/models/resnet_v3/model.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/datasets/sample_from_dir.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -92,7 +121,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="model" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="split_image" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -100,12 +129,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wpcv/models/resnet_v2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/datasets/image" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wpcv/models/resnet_v2/model.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/datasets/image/split_image.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -114,7 +143,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="object_detection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="split_trainval_imagefolder" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -122,12 +151,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wpcv/utils/augmentations" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/datasets" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wpcv/utils/augmentations/object_detection.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/datasets/split_trainval_imagefolder.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -136,7 +165,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pil" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,12 +173,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wpcv/utils/transforms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/train_scripts" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wpcv/utils/transforms/pil.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_scripts/resnet_train.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,7 +187,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="resnet" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="x" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -166,12 +195,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wpcv/scripts/trainers" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/tmp" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wpcv/scripts/trainers/resnet.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/tmp/x.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -182,11 +211,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.resnet" />
-        <item itemvalue="Python.model (1)" />
-        <item itemvalue="Python.model" />
-        <item itemvalue="Python.object_detection" />
-        <item itemvalue="Python.pil" />
+        <item itemvalue="Python.split_image" />
+        <item itemvalue="Python.sample_from_dir" />
+        <item itemvalue="Python.train" />
+        <item itemvalue="Python.split_trainval_imagefolder" />
+        <item itemvalue="Python.x" />
       </list>
     </recent_temporary>
   </component>
@@ -213,7 +242,17 @@
       <workItem from="1591676037119" duration="7676000" />
       <workItem from="1591935825798" duration="9337000" />
       <workItem from="1593312442984" duration="486000" />
-      <workItem from="1593313600684" duration="99025000" />
+      <workItem from="1593313600684" duration="100395000" />
+      <workItem from="1594101944152" duration="5850000" />
+      <workItem from="1594262578119" duration="6280000" />
+      <workItem from="1594282859817" duration="42259000" />
+      <workItem from="1594789330986" duration="106000" />
+      <workItem from="1594789463041" duration="24834000" />
+      <workItem from="1594969092339" duration="6891000" />
+      <workItem from="1595216199345" duration="22800000" />
+      <workItem from="1595499386255" duration="12048000" />
+      <workItem from="1595582759806" duration="598000" />
+      <workItem from="1595585362524" duration="5219000" />
     </task>
     <servers />
   </component>
@@ -234,15 +273,43 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/wpcv$pil_emboss_numpy.coverage" NAME="pil_emboss_numpy Coverage Results" MODIFIED="1591162140128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/scripts" />
-    <SUITE FILE_PATH="coverage/wpcv$tococo.coverage" NAME="tococo Coverage Results" MODIFIED="1590117140756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
-    <SUITE FILE_PATH="coverage/wpcv$object_detection.coverage" NAME="object_detection Coverage Results" MODIFIED="1593501429572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/augmentations" />
-    <SUITE FILE_PATH="coverage/wpcv$scratch_5.coverage" NAME="scratch_5 Coverage Results" MODIFIED="1590835689532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/wpcv$pil_adjust_hue_saturation.coverage" NAME="pil_adjust_hue_saturation Coverage Results" MODIFIED="1591167358998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/scripts" />
-    <SUITE FILE_PATH="coverage/wpcv$model.coverage" NAME="model Coverage Results" MODIFIED="1593501678156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/models/resnet_v2" />
+    <SUITE FILE_PATH="coverage/wpcv$rename_files_by_index.coverage" NAME="rename_files_by_index Coverage Results" MODIFIED="1594627199366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/file_helpers" />
+    <SUITE FILE_PATH="coverage/wpcv$train.coverage" NAME="train Coverage Results" MODIFIED="1595645116675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/train_scripts" />
+    <SUITE FILE_PATH="coverage/wpcv$sample_from_dir.coverage" NAME="sample_from_dir Coverage Results" MODIFIED="1595646554852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
+    <SUITE FILE_PATH="coverage/wpcv$split_trainval.coverage" NAME="split_trainval Coverage Results" MODIFIED="1594813350255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
     <SUITE FILE_PATH="coverage/wpcv$tofcltrb.coverage" NAME="tofcltrb Coverage Results" MODIFIED="1590115497605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
     <SUITE FILE_PATH="coverage/wpcv$model__1_.coverage" NAME="model (1) Coverage Results" MODIFIED="1593750516694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/models/resnet_v3" />
+    <SUITE FILE_PATH="coverage/wpcv$read_annotation_file_as_dict.coverage" NAME="read_annotation_file_as_dict Coverage Results" MODIFIED="1594972576098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr/milkcarton" />
     <SUITE FILE_PATH="coverage/wpcv$resnet.coverage" NAME="resnet Coverage Results" MODIFIED="1593998873029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/scripts/trainers" />
     <SUITE FILE_PATH="coverage/wpcv$pil.coverage" NAME="pil Coverage Results" MODIFIED="1593498832642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/transforms" />
+    <SUITE FILE_PATH="coverage/wpcv$add_global_index_to_files_in_mutilple_dirs.coverage" NAME="add_global_index_to_files_in_mutilple_dirs Coverage Results" MODIFIED="1595313145192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/file_helpers" />
+    <SUITE FILE_PATH="coverage/wpcv$char_segmentation_with_opencv.coverage" NAME="char_segmentation_with_opencv Coverage Results" MODIFIED="1594877129776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr" />
+    <SUITE FILE_PATH="coverage/wpcv$pil_emboss_numpy.coverage" NAME="pil_emboss_numpy Coverage Results" MODIFIED="1591162140128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/scripts" />
+    <SUITE FILE_PATH="coverage/wpcv$split_files.coverage" NAME="split_files Coverage Results" MODIFIED="1595400210254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/file_helpers" />
+    <SUITE FILE_PATH="coverage/wpcv$split_img.coverage" NAME="split_img Coverage Results" MODIFIED="1595384818521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
+    <SUITE FILE_PATH="coverage/wpcv$make_pascal_xml_label.coverage" NAME="make_pascal_xml_label Coverage Results" MODIFIED="1595379916735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/annotations" />
+    <SUITE FILE_PATH="coverage/wpcv$merge_datasets.coverage" NAME="merge_datasets Coverage Results" MODIFIED="1595491810455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr" />
+    <SUITE FILE_PATH="coverage/wpcv$split_trainval_imagefolder.coverage" NAME="split_trainval_imagefolder Coverage Results" MODIFIED="1595645014990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
+    <SUITE FILE_PATH="coverage/wpcv$random_crop_labelme_annotations_make_datasets.coverage" NAME="random_crop_labelme_annotations_make_datasets Coverage Results" MODIFIED="1595579616524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/annotations" />
+    <SUITE FILE_PATH="coverage/wpcv$6.coverage" NAME="6 Coverage Results" MODIFIED="1594691282067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/tmp" />
+    <SUITE FILE_PATH="coverage/wpcv$gen_milkcarton_corpus.coverage" NAME="gen_milkcarton_corpus Coverage Results" MODIFIED="1594791998603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr/milkcarton" />
+    <SUITE FILE_PATH="coverage/wpcv$change_file_names.coverage" NAME="change_file_names Coverage Results" MODIFIED="1594969793555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/file_helpers" />
+    <SUITE FILE_PATH="coverage/wpcv$pil_adjust_hue_saturation.coverage" NAME="pil_adjust_hue_saturation Coverage Results" MODIFIED="1591167358998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/scripts" />
+    <SUITE FILE_PATH="coverage/wpcv$model.coverage" NAME="model Coverage Results" MODIFIED="1593501678156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/models/resnet_v2" />
+    <SUITE FILE_PATH="coverage/wpcv$synth_milkcarton.coverage" NAME="synth_milkcarton Coverage Results" MODIFIED="1594794919655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/synth_data" />
+    <SUITE FILE_PATH="coverage/wpcv$change_labelme_lablels.coverage" NAME="change_labelme_lablels Coverage Results" MODIFIED="1595564836050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/annotations" />
+    <SUITE FILE_PATH="coverage/wpcv$exp.coverage" NAME="exp Coverage Results" MODIFIED="1594969910105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/wpcv$x.coverage" NAME="x Coverage Results" MODIFIED="1595581811083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/tmp" />
+    <SUITE FILE_PATH="coverage/wpcv$split_image.coverage" NAME="split_image Coverage Results" MODIFIED="1595650994556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/image" />
+    <SUITE FILE_PATH="coverage/wpcv$pick_files.coverage" NAME="pick_files Coverage Results" MODIFIED="1594809963851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/tmp" />
+    <SUITE FILE_PATH="coverage/wpcv$rectify_labels.coverage" NAME="rectify_labels Coverage Results" MODIFIED="1594774427830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr" />
+    <SUITE FILE_PATH="coverage/wpcv$split_train_val.coverage" NAME="split_train_val Coverage Results" MODIFIED="1595504094922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr" />
+    <SUITE FILE_PATH="coverage/wpcv$tococo.coverage" NAME="tococo Coverage Results" MODIFIED="1590117140756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
+    <SUITE FILE_PATH="coverage/wpcv$object_detection.coverage" NAME="object_detection Coverage Results" MODIFIED="1593501429572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/augmentations" />
+    <SUITE FILE_PATH="coverage/wpcv$make_char_classify_datasets.coverage" NAME="make_char_classify_datasets Coverage Results" MODIFIED="1594972596221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr/milkcarton" />
+    <SUITE FILE_PATH="coverage/wpcv$scratch_5.coverage" NAME="scratch_5 Coverage Results" MODIFIED="1590835689532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/wpcv$make_dataset_from_labeled_data.coverage" NAME="make_dataset_from_labeled_data Coverage Results" MODIFIED="1594281774138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr/milkcarton" />
+    <SUITE FILE_PATH="coverage/wpcv$convert_to_dataset.coverage" NAME="convert_to_dataset Coverage Results" MODIFIED="1594972515844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr" />
+    <SUITE FILE_PATH="coverage/wpcv$add_global_index_to_filename_multi_dirs.coverage" NAME="add_global_index_to_filename_multi_dirs Coverage Results" MODIFIED="1595329826697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/file_helpers" />
   </component>
 </project>

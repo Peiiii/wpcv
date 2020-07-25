@@ -1,0 +1,3 @@
+[console_scripts]
+wc = wpcv.clitools.cli:main
+

@@ -788,7 +788,7 @@ def affine(img, angle, translate, scale, shear, resample=0, fillcolor=None):
     center = (img.size[0] * 0.5 + 0.5, img.size[1] * 0.5 + 0.5)
     matrix = _get_inverse_affine_matrix(center, angle, translate, scale, shear)
     kwargs = {"fillcolor": fillcolor} if PILLOW_VERSION[0] >= '5' else {}
-    print(matrix)
+    # print(matrix)
     return img.transform(output_size, Image.AFFINE, matrix, resample, **kwargs)
 
 

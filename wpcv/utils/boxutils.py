@@ -365,6 +365,13 @@ def calc_quad_angle(quad):
 def calc_box_area(box):
     l,t,r,b=box
     return (r-l)*(b-t)
+def calc_polygon_area(points):
+    area = 0
+    q = points[-1]
+    for p in points:
+        area += p[0] * q[1] - p[1] * q[0]
+        q = p
+    return abs(area / 2)
 ##############################TextBox################################
 class TextBox(dict):
     def __init__(self):

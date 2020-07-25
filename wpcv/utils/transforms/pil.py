@@ -339,6 +339,50 @@ def vflip(img):
     return img
 
 
+def horizontal_split(img, split_positions=None, split_ratios=None):
+    w, h = img.size
+    if split_positions is None:
+        if not isinstance(split_ratios, (list, tuple)):
+            split_ratios = [split_ratios]
+        split_positions = [round(w * r) for r in split_ratios]
+    else:
+        if not isinstance(split_positions, (list, tuple)):
+            split_positions = [split_positions]
+    split_positions += [w]
+    last_pos = 0
+    res = []
+    for i in range(len(split_positions)):
+        pos = split_positions[i]
+        l, r = last_pos, pos
+        t, b = 0, h
+        cropped = img.crop((l, t, r, b))
+        res.append(cropped)
+        last_pos = pos
+    return res
+
+
+def vertical_split(img, split_positions=None, split_ratios=None):
+    w, h = img.size
+    if split_positions is None:
+        if not isinstance(split_ratios, (list, tuple)):
+            split_ratios = [split_ratios]
+        split_positions = [round(h * r) for r in split_ratios]
+    else:
+        if not isinstance(split_positions, (list, tuple)):
+            split_positions = [split_positions]
+    split_positions += [h]
+    last_pos = 0
+    res = []
+    for i in range(len(split_positions)):
+        pos = split_positions[i]
+        t, b = last_pos, pos
+        l, r = 0, w
+        cropped = img.crop((l, t, r, b))
+        res.append(cropped)
+        last_pos = pos
+    return res
+
+
 def resize_to_fixed_height(img, height):
     w, h = img.size
     r = h / height
@@ -426,10 +470,11 @@ def pad(img, pad_ratio=None, pad_size=None, fillcolor='black'):
                 pad_l, pad_t, pad_r, pad_b = pad_size
         else:
             pad_l = pad_t = pad_r = pad_b = pad_size
-    dst_size=(w+pad_l+pad_r,h+pad_t+pad_b)
-    canvas=Image.new(img.mode,dst_size,color=fillcolor)
-    canvas.paste(img,(pad_l,pad_t))
+    dst_size = (w + pad_l + pad_r, h + pad_t + pad_b)
+    canvas = Image.new(img.mode, dst_size, color=fillcolor)
+    canvas.paste(img, (pad_l, pad_t))
     return canvas
+
 
 def crop(img, box):
     img = img.crop(box)
@@ -466,26 +511,26 @@ def rotate(img, degree, expand=True, fillcolor='black', translate=None):
     return img
 
 
-def shear_x(img, degree,fillcolor='black', **kwargs):
-    assert isinstance(img,Image.Image)
+def shear_x(img, degree, fillcolor='black', **kwargs):
+    assert isinstance(img, Image.Image)
     import math
     arc = math.radians(degree)
     factor = math.sin(arc)
     w, h = img.size
     ofx = int(h * math.sin(arc))
     dw = abs(ofx)
-    img = img.transform((w + dw, h), Image.AFFINE, (1, -factor, min(0, ofx), 0, 1, 0),fill=fillcolor, **kwargs)
+    img = img.transform((w + dw, h), Image.AFFINE, (1, -factor, min(0, ofx), 0, 1, 0), fill=fillcolor, **kwargs)
     return img
 
 
-def shear_y(img, degree,fillcolor='black', **kwargs):
+def shear_y(img, degree, fillcolor='black', **kwargs):
     import math
     arc = math.radians(degree)
     factor = math.sin(arc)
     w, h = img.size
     ofy = int(w * math.sin(arc))
     dh = abs(ofy)
-    img = img.transform((w, h + dh), Image.AFFINE, (1, 0, 0, factor, 1, min(0, -ofy)),fill=fillcolor, **kwargs)
+    img = img.transform((w, h + dh), Image.AFFINE, (1, 0, 0, factor, 1, min(0, -ofy)), fill=fillcolor, **kwargs)
     return img
 
 
@@ -727,7 +772,7 @@ def _demo():
     # im = rotate(img, 30, expand=False)
     # saver.save(im)
 
-    im=pad(img,(0.1,0.4),fillcolor='green')
+    im = pad(img, (0.1, 0.4), fillcolor='green')
     # im = resize_keep_ratio(img, (500, 100))
     print(im.size)
     im.show()

@@ -342,7 +342,9 @@ class Flags(PointDict):
 
 
 class ArgumentSpace(PointDict):
-	class Empty:
+	class EmptyArgument:
+		pass
+	class EmptyKey:
 		pass
 
 	def __init__(self, **kwargs):
@@ -379,26 +381,28 @@ class ArgumentSpace(PointDict):
 		assert isinstance(parent, ArgumentSpace)
 		self.seta(__parent__=parent)
 
-	def get_argument(self, arg, default=Empty):
+	def get_argument(self, arg, default=EmptyArgument):
 		return self.get(arg, default)
 
-	def get(self, arg, default=Empty):
-		class Empty:
-			pass
-
-		v = PointDict.get(self, arg, Empty)
-		if v is Empty or v is None:
+	def get(self, arg, default=EmptyArgument):
+		EmptyKey=ArgumentSpace.EmptyKey
+		v = PointDict.get(self, arg, EmptyKey)
+		if v is EmptyKey or v is None:
 			if isinstance(self.geta('__parent__'), ArgumentSpace):
-				v = self.geta('__parent__').get_argument(arg, Empty)
-				if v is Empty:
-					if default is ArgumentSpace.Empty:
+				v = self.geta('__parent__').get_argument(arg, EmptyKey)
+				# print('parent v:',v)
+				if v is EmptyKey:
+					# print('v is Empty')
+					if default is ArgumentSpace.EmptyArgument:
 						raise Exception('Cannot get argument %s' % (arg))
-					return default
+					v=default
+				# else:
+				# 	print('V is not Empty')
+		# print(arg,v,default)
 		return v
 
 	def retrieve_arguments(self, args, strict=True):
-		class Empty:
-			pass
+		Empty=EmptyKey=ArgumentSpace.EmptyKey
 
 		arg_list = []
 		params = []
@@ -598,13 +602,16 @@ class Trainer:
 	def val(self, **kwargs):
 		return self.emit('val', **kwargs)
 
-	def on_val(self, model, device, val_data_loader, criterion):
+	def on_val(self, model, device, val_data_loader, criterion,with_tqdm):
 		state, valState = self.retrieve_arguments('state,valState')
 		state.phase = 'val'
 		valState.clear_state()
 		model.to(device)
 		model.eval()
 		self.emit('val_start')
+		if with_tqdm:
+			import tqdm
+			val_data_loader=tqdm.tqdm(val_data_loader)
 		for valState.step, (inputs, labels) in enumerate(val_data_loader):
 			self.emit('batch_val_start')
 			valState.inputs, valState.labels = self.to_device(inputs, labels, device)
@@ -665,8 +672,12 @@ class Trainer:
 			res = func(*args,**params,**kwargs)
 			return res
 		return wrapper
+	def test(self):
+		raise NotImplementedError
+	def predict(self,x):
+		raise NotImplementedError
 	def train(self, model=None, device=None, train_data_loader=None, val_data_loader=None, criterion=None,
-	          optimizer=None, lr_scheduler=None, start_global_step=None, start_epoch=None, num_epochs=None):
+	          optimizer=None, lr_scheduler=None, start_global_step=None, start_epoch=None, num_epochs=None,**kwargs):
 		'''
 		You have three ways to call train:
 		call trainer.train with or without arguments
@@ -676,7 +687,7 @@ class Trainer:
 		kwargs = dict(
 			model=model, device=device, train_data_loader=train_data_loader, val_data_loader=val_data_loader,
 			optimizer=optimizer, lr_scheduler=lr_scheduler, start_global_step=start_global_step,
-			start_epoch=start_epoch, num_epochs=num_epochs,
+			start_epoch=start_epoch, num_epochs=num_epochs,**kwargs
 		)
 		return self.emit('train', **kwargs)
 	def lr_scheduler_step(self):
@@ -684,7 +695,7 @@ class Trainer:
 	def on_lr_scheduler_step(self,lr_scheduler,epoch,trainState):
 		lr_scheduler.step(trainState.epoch_loss,epoch)
 	def on_train(self, model, device, train_data_loader, val_data_loader, criterion, optimizer, lr_scheduler,
-	             start_global_step, start_epoch, num_epochs):
+	             start_global_step, start_epoch, num_epochs,with_tqdm):
 		'''
 		Because only state and flags need to be changed during the process, we should only get state and flags
 		directly from Trainer object, for other arguments like params and settings, they don't need to be change so we
@@ -696,10 +707,14 @@ class Trainer:
 		state.phase = 'train'
 		state.global_step = start_global_step
 		self.emit('train_start')
+		if with_tqdm:
+			import tqdm
 		for state.epoch in range(start_epoch, start_epoch + num_epochs):
 			trainState.clear_state()
 			model.train()
 			self.emit('epoch_train_start')
+			if with_tqdm:
+				train_data_loader=tqdm.tqdm(train_data_loader)
 			for trainState.step, (inputs, labels) in enumerate(train_data_loader):
 				self.emit('batch_train_start')
 				trainState.lr = optimizer.state_dict()['param_groups'][0]['lr']
@@ -804,6 +819,8 @@ class ClassifierTrainer(Trainer):
 		)
 		self.log(log)
 
+class KeypointDetectorTrainer(Trainer):
+	pass
 
 def demo():
 	trainer = ClassifierTrainer()

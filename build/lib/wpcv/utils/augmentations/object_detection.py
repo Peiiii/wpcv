@@ -7,7 +7,7 @@ import wpcv
 from wpcv.utils.transforms import pil as IMG
 from wpcv.utils.transforms import points as PNT
 from wpcv.utils.augmentations.base import Compose, Zip, RandomMultiChoice
-import wpcv.utils.augmentations.base as BT
+import wpcv.utils.augmentations.image as BT
 
 
 class ToPILImage(object):
