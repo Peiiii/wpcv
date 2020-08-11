@@ -1,4 +1,5 @@
 import math
+import numpy as np
 ##########################Box Operations#############################
 def resize_box(box,size):
     cx,cy,w,h=ltrb_to_ccwh(box)
@@ -41,7 +42,13 @@ def rotate_points(points,angle,cx,cy,h,w):
     points=M.dot((points-np.array([cx,cy])).T).T+np.array([nw//2,nh//2])
     points=points.reshape(original_shape)
     return points
-
+def bounding_rect(points):
+    points=np.array(points)
+    l=np.min(points[:,0])
+    r=np.max(points[:,0])
+    t=np.min(points[:,1])
+    b=np.max(points[:,1])
+    return np.array([l,t,r,b])
 def rotate_boxes(boxes,angle,cx,cy,h,w):
     '''原创'''
     boxes=[list(box) for box in boxes]
@@ -211,17 +218,21 @@ def box_in_area(box,size):
     else:
         return True
 
-def organize_quad_points(box):
-    '''
-    turn into clock-wise points: quad
-    p0:lt,p1:rt,p2:rb,p4:lb
-    '''
-    p0,p3, p1,p2 = sorted(box, key=lambda p: p[0])
-    p03=[p0,p3]
-    p12=[p1,p2]
-    p0, p3 = sorted(p03, key=lambda p: p[1])
-    p1, p2 = sorted(p12, key=lambda p: p[1])
-    return [p0,p1,p2,p3]
+def organize_quad_points(points):
+    points=np.array(points)
+    center=points.mean(axis=0)
+    angles=np.arctan2(center[1]-points[:,1],points[:,0]-center[0])*180/np.pi
+    ids=np.argsort(angles)[::-1]
+    polygon=points[ids]
+    return polygon
+def organize_polygon_points(points):
+    points=np.array(points)
+    center=points.mean(axis=0)
+    angles=np.arctan2(center[1]-points[:,1],points[:,0]-center[0])*180/np.pi
+    ids=np.argsort(angles)[::-1]
+    polygon=points[ids]
+    return polygon
+
 def sort_boxes(boxes):
     from functools import cmp_to_key
     boxes=[ltrb_to_ccwh(box) for box in boxes]

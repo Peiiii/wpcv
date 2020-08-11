@@ -175,7 +175,7 @@ def draw_box(img,box,copy=True,width=5,outline='red',fill=None):
     return img
 
 
-def draw_polygon(img, points, color='blue', width=1, label=None, label_xy=(0, 0), label_color=None):
+def draw_polygon(img, points, color='blue', width=1, label=None, label_xy=(0, 0), label_color=None,font=None):
     points = [tuple(list(p)) for p in points]
     draw = ImageDraw.Draw(img)
     points.append(points[0])
@@ -185,7 +185,11 @@ def draw_polygon(img, points, color='blue', width=1, label=None, label_xy=(0, 0)
         corner = sorted(points, key=lambda p: p[0] - p[1], reverse=True)[0]
 
         xy = [(x1 + x2, y1 + y2) for (x1, y1), (x2, y2) in [(corner, label_xy)]][0]
-        draw.text(xy, label, fill=label_color)
+        draw.text(xy, label, fill=label_color,font=font)
+    return img
+def draw_polygons(img, polygons, color='blue', width=1, label=None, label_xy=(0, 0), label_color=None,font=None):
+    for polygon in polygons:
+        img=draw_polygon(img,polygon,color=color,width=width,label=label,label_xy=label_xy,label_color=label_color,font=font)
     return img
 def draw_textboxes(img,textboxes,copy=False,font_size=32):
     if copy:

@@ -478,7 +478,10 @@ class Trainer:
 		self.event_manager = EventManger()
 		self.use_default_logger = use_default_logger
 		self.argument_space = ArgumentSpace()
-
+	def load_state_dict(self,state_dict):
+		if isinstance(state_dict,str):
+			state_dict=torch.load(state_dict,map_location=self.params.device)
+		self.params.model.load_state_dict(state_dict)
 	def setup(self):
 		'''
 		设置参数完成后才能setup,
@@ -498,10 +501,6 @@ class Trainer:
 	def log(self, *args, **kwargs):
 		print(*args, **kwargs)
 
-	def load_state_dict(self, state_dict):
-		if isinstance(state_dict, str):
-			state_dict = torch.load(state_dict)
-		self.params.model.load_state_dict(state_dict)
 
 	def emit(self, name, argspace=None, **kwargs):
 		assert argspace is None or isinstance(argspace, ArgumentSpace)
@@ -535,6 +534,9 @@ class Trainer:
 				self.event_manager.bind(event, func)
 			else:
 				raise Exception('Name does not start with "on" : %s' % (func.__name__))
+		return self
+	def bind(self,event,callback):
+		self.event_manager.bind(event,callback)
 		return self
 	def bind_it(self,event):
 		return self.event_manager.bind_this(event)
