@@ -1,19 +1,25 @@
 import random
-
+import numpy as np
 
 class Transform:
 	pass
 
 
-def random_float_generator(rg):
+def random_float_generator(rg,shape=None,dtype=float):
 	if not isinstance(rg, (tuple, list)):
 		rg = [-rg, rg]
 	low, high = rg
 
 	def func():
-		return random.random() * (high - low) + low
+		if dtype in (int,np.int):
+			return np.random.randint(low,high,size=shape)
+		else:
+			return np.random.random(shape) * (high - low) + low
 
 	return func
+
+
+
 
 
 class Identical(object):

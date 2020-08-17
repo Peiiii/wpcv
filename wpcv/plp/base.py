@@ -482,6 +482,9 @@ class Trainer:
 		if isinstance(state_dict,str):
 			state_dict=torch.load(state_dict,map_location=self.params.device)
 		self.params.model.load_state_dict(state_dict)
+
+
+
 	def setup(self):
 		'''
 		设置参数完成后才能setup,
@@ -757,6 +760,7 @@ class SaveCallback(Callback):
 			print('New best accuracy: %.4f improved from %.4f , model saved.' % (
 				best_accuracy, old_best_accuracy if old_best_accuracy is not None else 0))
 			torch.save(model.state_dict(), 'model_best.pkl'.format(epoch=epoch))
+			torch.save(model.state_dict(), 'model_best_[epoch={epoch}&acc={acc:.3f}].pkl'.format(epoch=epoch,acc=best_accuracy))
 
 	def on_val_end(self, model, epoch, mode):
 		if mode == 'val':

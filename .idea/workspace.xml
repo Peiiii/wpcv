@@ -2,38 +2,115 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2de4013-8abd-4a11-906e-ca5dc5610a15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/plp/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/plp/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/base.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/functional.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/augmentations/object_detection.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/boxutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/boxutils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/imutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/wpcv/utils/imutils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/transforms/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/transforms/bbox.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/transforms/opencv.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/transforms/pil.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/wpcv/utils/transforms/points.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/12.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/12.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/13.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/13.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/14.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/15.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/15.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/16.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/16.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/17.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/17.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/18.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/18.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/19.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/19.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/20.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/20.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/21.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/21.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/22.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/22.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/23.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/23.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/24.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/24.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/25.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/25.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/26.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/26.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/27.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/27.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/28.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/28.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/29.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/29.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/30.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/30.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/31.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/31.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/32.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/32.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/33.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/33.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/34.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/34.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/35.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/35.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/36.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/36.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/37.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/37.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/38.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/38.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/39.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/39.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/40.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/40.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/41.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/41.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/42.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/42.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/43.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/43.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/44.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/44.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/45.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/45.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/46.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/46.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/47.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/47.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/48.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/48.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/49.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/49.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/50.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/50.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/51.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/51.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/52.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/52.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/53.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/53.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/54.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/54.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/55.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/55.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/56.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/56.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/57.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/57.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/58.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/58.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/59.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/59.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/60.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/60.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/61.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/61.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/62.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/62.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/63.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/63.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/64.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/64.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/65.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/65.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/66.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/66.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/67.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/67.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/68.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/68.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/69.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/69.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/70.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/70.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/71.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/71.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/72.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/72.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/73.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/73.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/74.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/74.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/75.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/75.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/76.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/76.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/77.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/77.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/78.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/78.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/79.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/79.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/8.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/80.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/80.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/81.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/81.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/82.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/82.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/83.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/83.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/84.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/84.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/85.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/85.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/86.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/86.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/87.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/87.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/88.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/88.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/89.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/89.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/9.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/90.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/90.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/91.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/91.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/92.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/92.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/93.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/93.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/94.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/94.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/95.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/95.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/96.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/96.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/97.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/97.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/98.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/98.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/99.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/99.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/version.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wpcv.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv.egg-info/PKG-INFO" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv.egg-info/SOURCES.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wpcv/plp/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/plp/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wpcv/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/data_aug/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/data_aug/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/functional.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/data_aug/functional.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/image.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/data_aug/img_aug.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/augmentations/object_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/data_aug/det_aug.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/boxutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/boxutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/data_aug/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/data_aug/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wpcv/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/dataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wpcv/utils/imutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/imutils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/transforms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/ops/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/transforms/bbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/ops/bbox_ops.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/transforms/opencv.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/ops/opencv_ops.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/transforms/pil.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/ops/pil_ops.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wpcv/utils/transforms/points.py" beforeDir="false" afterPath="$PROJECT_DIR$/wpcv/utils/ops/polygon_ops.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +145,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TestProjects/crnn_libtorch" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/train_scripts" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -80,11 +157,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/train_scripts" />
+      <recent name="$PROJECT_DIR$/train_scripts/weights" />
       <recent name="$PROJECT_DIR$/scripts/datasets/synth_data" />
       <recent name="$PROJECT_DIR$/wpcv/utils/extra" />
       <recent name="$PROJECT_DIR$/scripts/datasets/ocr/milkcarton" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/wpcv/models/quadnet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/train_scripts/weights" />
@@ -103,8 +180,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.png2jpg">
-    <configuration name="exp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.train">
+    <configuration name="base" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -112,12 +189,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wpcv/utils/data_aug" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/exp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wpcv/utils/data_aug/base.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -126,7 +203,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="object_detection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="resnet_val" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -134,12 +211,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wpcv/utils/augmentations" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/train_scripts" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wpcv/utils/augmentations/det_aug.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_scripts/resnet_val.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -148,29 +225,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="png2jpg" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="wpcv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/images" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/images/png2jpg.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="sample_from_dir" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="split_trainval" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wpcv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -183,7 +238,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/datasets/sample_from_dir.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/datasets/split_trainval.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="split_trainval_imagefolder" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="wpcv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/datasets" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/datasets/split_trainval_imagefolder.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -214,13 +291,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.split_trainval" />
+      <item itemvalue="Python.split_trainval_imagefolder" />
+      <item itemvalue="Python.train" />
+      <item itemvalue="Python.base" />
+      <item itemvalue="Python.resnet_val" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.png2jpg" />
-        <item itemvalue="Python.sample_from_dir" />
-        <item itemvalue="Python.exp" />
         <item itemvalue="Python.train" />
-        <item itemvalue="Python.object_detection" />
+        <item itemvalue="Python.resnet_val" />
+        <item itemvalue="Python.split_trainval" />
+        <item itemvalue="Python.base" />
+        <item itemvalue="Python.split_trainval_imagefolder" />
       </list>
     </recent_temporary>
   </component>
@@ -261,7 +345,8 @@
       <workItem from="1596163862341" duration="35097000" />
       <workItem from="1596849293639" duration="514000" />
       <workItem from="1597023709929" duration="1376000" />
-      <workItem from="1597107676867" duration="2377000" />
+      <workItem from="1597107676867" duration="8059000" />
+      <workItem from="1597282301308" duration="14811000" />
     </task>
     <servers />
   </component>
@@ -282,10 +367,13 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/wpcv$Doctests_in_base.coverage" NAME="Doctests in base Coverage Results" MODIFIED="1597369422808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/data_aug" />
     <SUITE FILE_PATH="coverage/wpcv$rename_files_by_index.coverage" NAME="rename_files_by_index Coverage Results" MODIFIED="1594627199366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/file_helpers" />
-    <SUITE FILE_PATH="coverage/wpcv$train.coverage" NAME="train Coverage Results" MODIFIED="1596617717965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/train_scripts" />
     <SUITE FILE_PATH="coverage/wpcv$sample_from_dir.coverage" NAME="sample_from_dir Coverage Results" MODIFIED="1596782565156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
-    <SUITE FILE_PATH="coverage/wpcv$split_trainval.coverage" NAME="split_trainval Coverage Results" MODIFIED="1594813350255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
+    <SUITE FILE_PATH="coverage/wpcv$train.coverage" NAME="train Coverage Results" MODIFIED="1597372610974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/train_scripts" />
+    <SUITE FILE_PATH="coverage/wpcv$resnet_test.coverage" NAME="resnet_test Coverage Results" MODIFIED="1597283913638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/train_scripts" />
+    <SUITE FILE_PATH="coverage/wpcv$base.coverage" NAME="base Coverage Results" MODIFIED="1597369521937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/utils/data_aug" />
+    <SUITE FILE_PATH="coverage/wpcv$split_trainval.coverage" NAME="split_trainval Coverage Results" MODIFIED="1597372282965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
     <SUITE FILE_PATH="coverage/wpcv$tofcltrb.coverage" NAME="tofcltrb Coverage Results" MODIFIED="1590115497605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
     <SUITE FILE_PATH="coverage/wpcv$model__1_.coverage" NAME="model (1) Coverage Results" MODIFIED="1593750516694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wpcv/models/resnet_v3" />
     <SUITE FILE_PATH="coverage/wpcv$read_annotation_file_as_dict.coverage" NAME="read_annotation_file_as_dict Coverage Results" MODIFIED="1594972576098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr/milkcarton" />
@@ -298,7 +386,7 @@
     <SUITE FILE_PATH="coverage/wpcv$split_img.coverage" NAME="split_img Coverage Results" MODIFIED="1595384818521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
     <SUITE FILE_PATH="coverage/wpcv$make_pascal_xml_label.coverage" NAME="make_pascal_xml_label Coverage Results" MODIFIED="1595379916735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/annotations" />
     <SUITE FILE_PATH="coverage/wpcv$merge_datasets.coverage" NAME="merge_datasets Coverage Results" MODIFIED="1595491810455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr" />
-    <SUITE FILE_PATH="coverage/wpcv$split_trainval_imagefolder.coverage" NAME="split_trainval_imagefolder Coverage Results" MODIFIED="1596536774127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
+    <SUITE FILE_PATH="coverage/wpcv$split_trainval_imagefolder.coverage" NAME="split_trainval_imagefolder Coverage Results" MODIFIED="1597368440674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
     <SUITE FILE_PATH="coverage/wpcv$random_crop_labelme_annotations_make_datasets.coverage" NAME="random_crop_labelme_annotations_make_datasets Coverage Results" MODIFIED="1595579616524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/annotations" />
     <SUITE FILE_PATH="coverage/wpcv$6.coverage" NAME="6 Coverage Results" MODIFIED="1594691282067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/tmp" />
     <SUITE FILE_PATH="coverage/wpcv$gen_milkcarton_corpus.coverage" NAME="gen_milkcarton_corpus Coverage Results" MODIFIED="1594791998603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/ocr/milkcarton" />
@@ -309,6 +397,7 @@
     <SUITE FILE_PATH="coverage/wpcv$synth_milkcarton.coverage" NAME="synth_milkcarton Coverage Results" MODIFIED="1594794919655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/synth_data" />
     <SUITE FILE_PATH="coverage/wpcv$merge_classify_datasets.coverage" NAME="merge_classify_datasets Coverage Results" MODIFIED="1596601268003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets" />
     <SUITE FILE_PATH="coverage/wpcv$change_labelme_lablels.coverage" NAME="change_labelme_lablels Coverage Results" MODIFIED="1595564836050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/annotations" />
+    <SUITE FILE_PATH="coverage/wpcv$resnet_val.coverage" NAME="resnet_val Coverage Results" MODIFIED="1597372434593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/train_scripts" />
     <SUITE FILE_PATH="coverage/wpcv$x.coverage" NAME="x Coverage Results" MODIFIED="1595581811083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/tmp" />
     <SUITE FILE_PATH="coverage/wpcv$split_image.coverage" NAME="split_image Coverage Results" MODIFIED="1595650994556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts/datasets/image" />
     <SUITE FILE_PATH="coverage/wpcv$exp.coverage" NAME="exp Coverage Results" MODIFIED="1596769777160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />

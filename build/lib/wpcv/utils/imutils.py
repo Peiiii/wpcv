@@ -131,12 +131,12 @@ def concat_imgs_vertical(imgs):
     imgs=[cv2img(img) for img in imgs]
     img=np.concatenate(imgs,axis=0)
     return pilimg(img)
-def draw_boxes_with_label(img,boxes,offset=(0,-16),box_color='red',text_color='green',line_width=5):
+def draw_boxes_with_label(img,boxes,offset=(0,-16),box_color='red',text_color='green',line_width=5,font=None):
     ofx,ofy=offset
     for box,label in boxes:
         l,t,r,b=box
         img=draw_box(img,box,outline=box_color,width=line_width)
-        img=draw_text(img,text=label,xy=(l+ofx,t+ofy),fill=text_color)
+        img=draw_text(img,text=label,xy=(l+ofx,t+ofy),fill=text_color,font=font)
     return img
 def mark_img(img,text,font_path=None,font_size=None):
     imw,imh=img.size
