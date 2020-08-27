@@ -266,13 +266,19 @@ def crop_quads(img,boxes):
 def cv2img(img):
     if isinstance(img,Image.Image):
         img=np.array(img)
-        if len(img.shape)==3:img=img[:,:,::-1]
+        if len(img.shape)==3:
+            # img=img[:,:,::-1]
+            img=cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
         return img
     return img
 def pilimg(img):
     if isinstance(img,Image.Image):return img
     if isinstance(img,np.ndarray):
-        if len(img.shape)==3:img=img[:,:,::-1]
+        if len(img.shape)==3:
+            # img=img[:,:,::-1]
+            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+            pass
+
     return Image.fromarray(np.array(img).astype(np.uint8))
 def pilimshow(x,*args,**kwargs):
     x=pilimg(x)

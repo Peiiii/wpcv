@@ -223,14 +223,10 @@ class META:
 			self.correct_count = None
 
 		def analyze(self):
-			# print('Analyzing..., phase:%s'%(self.trainer.state.phase))
 			def non_zero(t):
-				# print(t)
-				# assert isinstance(t,torch.Tensor)
 				mask = t == 0
 				epsilon = 1e-7
 				t = t + torch.zeros_like(mask).fill_(epsilon) * mask
-				# print(t)
 				return t
 
 			recalls = self.correct_count / non_zero(self.sample_count)

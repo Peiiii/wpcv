@@ -61,9 +61,12 @@ wpcv/utils/dataset.py
 wpcv/utils/imutils.py
 wpcv/utils/data_aug/__init__.py
 wpcv/utils/data_aug/base.py
-wpcv/utils/data_aug/det_aug.py
 wpcv/utils/data_aug/functional.py
 wpcv/utils/data_aug/img_aug.py
+wpcv/utils/data_aug/det_aug/__init__.py
+wpcv/utils/data_aug/det_aug/_demo.py
+wpcv/utils/data_aug/det_aug/opencv_aug.py
+wpcv/utils/data_aug/det_aug/pil_aug.py
 wpcv/utils/extra/__init__.py
 wpcv/utils/extra/get_table.py
 wpcv/utils/extra/get_text_area.py
