@@ -262,6 +262,31 @@ def crop_quads(img,boxes):
     for box in boxes:
         bims.append(crop_quad(img,box))
     return bims
+def polygon_mask_old(polygons,size):
+    img = Image.new('L', size, 0)
+    draw=ImageDraw.Draw(img)
+    for polygon in polygons:
+        print(polygon)
+        draw.polygon(polygon, outline=1, fill=1)
+    mask = np.array(img)
+    print(mask.shape)
+    print(mask.sum())
+    return mask
+def polygon_mask(polygons,size):
+    mask=np.zeros(size[::-1], dtype=np.uint8)
+    polygons=np.array(polygons,dtype=np.int32)
+    cv2.fillPoly(mask, polygons, 255)
+    return mask
+def inpaint_polygon_areas(img,polygons):
+    h,w=img.shape[:2]
+    mask=polygon_mask(polygons,(w,h))
+    pilimg(mask).show()
+    img=cv2.inpaint(img,mask,5,cv2.INPAINT_NS)
+    # img=cv2.inpaint(img,mask,10,cv2.INPAINT_TELEA)
+    pilimg(img).show()
+    raise
+    return img
+
 #######################Show#############################
 def cv2img(img):
     if isinstance(img,Image.Image):

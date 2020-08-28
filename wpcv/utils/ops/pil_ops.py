@@ -475,11 +475,9 @@ def pad(img, pad_ratio=None, pad_size=None, fillcolor='black'):
     canvas.paste(img, (pad_l, pad_t))
     return canvas
 
-
 def crop(img, box):
     img = img.crop(box)
     return img
-
 
 def center_crop(img, output_size):
     if isinstance(output_size, numbers.Number):

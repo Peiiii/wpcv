@@ -17,7 +17,6 @@ class ToOpencvImage(object):
         else:
             return imutils.cv2img(img)
 
-
 class RandomPerspective(object):
     def __init__(self, distortion_scale):
         if isinstance(distortion_scale,numbers.Number):
@@ -33,7 +32,6 @@ class RandomPerspective(object):
         dt = (t - 0)
         dr = (imw - r)
         db = (imh - b)
-        # quad = np.array([l, t, r, t, r, b, l, b]).astype(np.float)
         quad = np.array([0,0,imw,0,imw,imh,0,imh]).astype(np.float)
         distortion_scale=self.distortion_scale[0]+np.random.random(8)*(self.distortion_scale[1]-self.distortion_scale[0])
         quad += np.array([-dl, -dt, +dr, -dt, +dr, +db, -dl, +db])*distortion_scale*-1
@@ -53,6 +51,5 @@ class RandomPerspective(object):
             polygon = tmp_polygon[:, :2] / np.expand_dims(tmp_polygon[:, 2], -1)
             tmp.append(polygon)
         polygons = np.array(tmp)
-        # img = imutils.pilimg(img)
         return img, polygons
 

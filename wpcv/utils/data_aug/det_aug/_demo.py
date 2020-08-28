@@ -14,7 +14,10 @@ def demo():
             ]),
             lambda x: x,
         ]),
+        ToOpencvImage(),
         # RandomPerspective([0.8,1]),
+        lambda img,polygons:(wpcv.inpaint_polygon_areas(img,polygons),polygons),
+        ToPILImage(),
         RandomRotate(30, fillcolor='black'),
         RandomShear(30, 30, fillcolor='black'),
         RandomTranslate(max_offset=[100, 100], fillcolor='black'),
@@ -46,44 +49,22 @@ def demo():
         Resize((512, 512), keep_ratio=True, fillcolor='black'),
         # Limitsize((128,1024)),
     ])
-    img = Image.open('/home/ars/sda5/data/chaoyuan/datasets/detect_datasets/行驶证/train/101.jpg').convert('RGB')
+    img = Image.open('/home/ars/sda5/data/chaoyuan/datasets/detect_datasets/三脚架检测/train/11.jpg').convert('RGB')
 
     polygons = [[
         [
-            679.0645161290323,
-            739.6129032258065
+          783.6774193548387,
+          1205.516129032258
         ],
         [
-            1295.1935483870968,
-            770.258064516129
+          665.9354838709678,
+          1403.9032258064517
         ],
         [
-            1277.4516129032259,
-            1186.3870967741937
-        ],
-        [
-            661.3225806451613,
-            1163.8064516129032
+          925.6129032258063,
+          1468.4193548387098
         ]
-    ],
-        [
-            [
-                583.9032258064516,
-                225.09677419354838
-            ],
-            [
-                1196.8064516129032,
-                208.96774193548387
-            ],
-            [
-                1214.5483870967741,
-                625.0967741935484
-            ],
-            [
-                601.6451612903226,
-                646.0645161290323
-            ]
-        ]
+      ],
     ]
     img, polygons = transform(img, polygons)
     # print(points)
